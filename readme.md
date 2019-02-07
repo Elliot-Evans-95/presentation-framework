@@ -2,7 +2,8 @@
 
 ## Roadmap
 - Progress bar component
-- CSS Theming
+- Templating via HTML File
+- CSS Stying in general
 - page init and page destroy hooks
 - Ability to give it a number of pages
 - Ability to implement you own themes
