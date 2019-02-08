@@ -71,6 +71,10 @@ if(isIndexRoute()) {
 }
 
 document.addEventListener("keydown", (event) => {
+    if (event.key === "n") {
+        window.open(location.href, '', 'width=350, height=250, scrollbars=yes, resizable=yes');
+    }
+
     if (event.key === "ArrowRight") {
         const currentPage = getCurrentPage();
         const nextPage = getNextPage(currentPage);

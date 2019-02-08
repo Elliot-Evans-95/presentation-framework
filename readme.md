@@ -8,3 +8,4 @@
 - Ability to give it a number of pages
 - Ability to implement you own themes
 - Ability to add html content
+- Ability to have a start stop timer on a pop-up
