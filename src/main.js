@@ -74,29 +74,36 @@ class ProgressBar extends HTMLElement {
         this._progressBarMaxPercentage = 100;
         this._percentagePerStep = 100 / routes.length;
         this._currentPercentage = 0;
-        this.heading = document.createElement('h1');
 
         this.setAttribute('id', 'progressBar');
 
         const shadow = this.attachShadow({mode: 'open'});
 
-        this.heading.textContent = this._currentPercentage;
+        this.progress = document.createElement('div');
+        this.progress.setAttribute('id', 'progress');
 
         const style = document.createElement('style');
         style.textContent =
             `
             :host {
-                background: aqua;
                 width: 100vw;
-                height: 4rem;
+            }
+            #progress {
+                background: red;
+                height: 1rem;
+                max-width: 0%;
             }
         `;
         shadow.appendChild(style);
-        shadow.appendChild(this.heading);
+        shadow.appendChild(this.progress);
     }
 
     static get observedAttributes() {
         return ['movement'];
+    }
+
+    setProgress(width) {
+        this.progress.setAttribute('style', `max-width: ${width}%`);
     }
 
     attributeChangedCallback(name, oldValue, newValue) {
@@ -104,13 +111,13 @@ class ProgressBar extends HTMLElement {
             if(this._currentPercentage <= 0) return;
 
             this._currentPercentage = this._currentPercentage - this._percentagePerStep;
-            this.heading.textContent = this._currentPercentage;
+            this.setProgress(this._currentPercentage);
         }
         if(newValue === 'next') {
             if(this._currentPercentage >= this._progressBarMaxPercentage) return;
 
             this._currentPercentage = this._currentPercentage + this._percentagePerStep;
-            this.heading.textContent = this._currentPercentage;
+            this.setProgress(this._currentPercentage);
         }
     }
 
@@ -140,7 +147,6 @@ document.addEventListener("keydown", (event) => {
         removeContent();
         setPageState(nextPage);
         document.getElementById('progressBar').setAttribute('movement', 'next');
-        // document.getElementById('progressBar').removeAttribute('movement');
         addContentToPage(nextPage);
     }
     if (event.key === "ArrowLeft") {
@@ -150,7 +156,7 @@ document.addEventListener("keydown", (event) => {
         removeContent();
         setPageState(prevPage);
         document.getElementById('progressBar').setAttribute('movement', 'prev');
-        // document.getElementById('progressBar').removeAttribute('movement');
+        // document.getElementById('progresBar').removeAttribute('movement');
         addContentToPage(prevPage);
     }
 });
