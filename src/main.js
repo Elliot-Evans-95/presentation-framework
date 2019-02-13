@@ -12,6 +12,7 @@ const routes = [
         routeName: 'pageTwo',
         routeHTML: '<h1>HELLO WORLD 2</h1>',
         routeStyle: '.test123 { background: aqua}',
+        routeNotes: '#Hello World',
     }
 ];
 
@@ -84,7 +85,7 @@ class ProgressBar extends HTMLElement {
 
         const style = document.createElement('style');
         style.textContent =
-            `
+        `
             :host {
                 width: 100vw;
             }
@@ -137,7 +138,7 @@ if(isIndexRoute()) {
 
 document.addEventListener("keydown", (event) => {
     if (event.key === "n") {
-        window.open(location.href, '', 'width=350, height=250, scrollbars=yes, resizable=yes');
+        window.open('/popup.html', '', 'width=350, height=250, scrollbars=yes, resizable=yes');
     }
 
     if (event.key === "ArrowRight") {
@@ -156,7 +157,6 @@ document.addEventListener("keydown", (event) => {
         removeContent();
         setPageState(prevPage);
         document.getElementById('progressBar').setAttribute('movement', 'prev');
-        // document.getElementById('progresBar').removeAttribute('movement');
         addContentToPage(prevPage);
     }
 });
