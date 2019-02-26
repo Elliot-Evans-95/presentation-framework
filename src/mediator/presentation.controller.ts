@@ -39,4 +39,8 @@ export class PresentationController {
         Dom.removeContent();
         Dom.addContentToPage();
     }
+
+    public static init(): void {
+        Dom.constructPage(router.state.current.routeHTML);
+    }
 }

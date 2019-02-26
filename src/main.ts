@@ -1,5 +1,8 @@
 //----- HELPERS
-export const appShell = document.getElementById('app-shell');
+import {PresentationController} from "./mediator/presentation.controller";
+
+// GLOBAL HELPERS
+import './helpers/globals';
 
 // USER
 import './user/routes';
@@ -15,3 +18,5 @@ import './core/dom';
 
 // COMPONENTS
 import './components/progress-bar';
+
+PresentationController.init();

@@ -3,6 +3,7 @@ export type Route = {
     routeName: string,
     routeHTML: string,
     routeStyle: string,
+    isActive: boolean,
 }
 
 export interface IRouterState {
