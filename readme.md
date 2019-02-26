@@ -9,3 +9,6 @@
 - Ability to implement you own themes
 - Ability to add html content
 - Ability to have a start stop timer on a pop-up
+
+mediator design pattern
+observer design pattern
