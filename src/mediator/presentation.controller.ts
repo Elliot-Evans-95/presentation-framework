@@ -1,46 +1,48 @@
-import {Direction, IRouterState} from "../types/types";
+import {Direction, Route} from "../types/types";
 import {router} from "../core/router";
 import {Dom} from "../core/dom";
-import {routes} from "../user/routes";
 
 export class PresentationController {
 
-    public static getNewRoute(direction: Direction): IRouterState {
-        const currentIndex = router.state.current.id - 1;
+    public static setNewRoute(direction: Direction): Array<Route> {
+        const currentRoute = router.getActiveRoute();
+        const currentRouteIndex = currentRoute.id - 1;
+        const routerStateSnapshot = router.state;
 
-        function getCurrentRoute() {
-            switch (direction) {
-                case Direction.NEXT:
-                    document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
+        routerStateSnapshot[currentRouteIndex].isActive = false;
 
-                    return routes[currentIndex + 1];
-                case Direction.PREVIOUS:
-                    document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
-
-                    return routes[currentIndex - 1];
-                default:
-                    return router.state.current;
-            }
+        switch (direction) {
+            case Direction.NEXT:
+                document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
+                routerStateSnapshot[currentRouteIndex + 1].isActive = true;
+                routerStateSnapshot[currentRouteIndex + 1].isActive = true;
+                break;
+            case Direction.PREVIOUS:
+                document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
+                routerStateSnapshot[currentRouteIndex - 1].isActive = true;
+                routerStateSnapshot[currentRouteIndex - 1].isActive = true;
+                break;
+            default:
+                routerStateSnapshot[currentRouteIndex].isActive = true;
+                break;
         }
 
-        return {
-            prev: router.state.current || null,
-            current: getCurrentRoute()
-        };
+        return routerStateSnapshot;
     }
 
     public static goToPage(direction: Direction): void {
-        const newRoute = PresentationController.getNewRoute(direction);
-
-        router.createNewState(newRoute);
+        router.state = PresentationController.setNewRoute(direction);
+        router.setPushState();
     }
 
     public static rebuildDom(): void {
         Dom.removeContent();
-        Dom.addContentToPage();
+        Dom.addContentToPage(router.getActiveRoute());
     }
 
     public static init(): void {
-        Dom.constructPage(router.state.current.routeHTML);
+        const currentRoute = router.getActiveRoute();
+
+        Dom.constructPage(currentRoute.routeHTML);
     }
 }

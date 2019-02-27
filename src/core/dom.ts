@@ -1,5 +1,5 @@
-import {router} from "./router";
 import {appShell, pageShell} from "../helpers/globals";
+import {Route} from "../types/types";
 
 export class Dom {
     public static removeContent(): void {
@@ -8,8 +8,8 @@ export class Dom {
         }
     }
 
-    public static addContentToPage(): void {
-        pageShell.innerHTML = router.state.current.routeHTML;
+    public static addContentToPage(route: Route): void {
+        pageShell.innerHTML = route.routeHTML;
         appShell.appendChild(pageShell);
     };
 

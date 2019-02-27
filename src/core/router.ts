@@ -1,42 +1,35 @@
-import {IRouterState, Route} from "../types/types";
+import {Route} from "../types/types";
 import {routes} from "../user/routes";
 
 export class Router {
-    public routerState: IRouterState;
+    public routerState: Array<Route>;
 
     constructor(userRoutes: Array<Route>) {
-        this.routerState = {
-            prev: null,
-            current: userRoutes.length > 0 ? userRoutes[0] : null
-        };
-
+        this.routerState = userRoutes;
         this.setPushState();
     }
 
-    public get state(): IRouterState {
+    public get state(): Array<Route> {
         return this.routerState;
+    }
+
+    public set state(newRoutes: Array<Route>) {
+        this.routerState = newRoutes;
     }
 
     public setPushState(): void {
         window.history.pushState(
             null,
-            `/${this.routerState.current}`,
-            window.location.origin + `/${this.routerState.current.routeName}`
+            `/${this.getActiveRoute()}`,
+            window.location.origin + `/${this.getActiveRoute().routeName}`
         );
     }
 
-    public createNewState(newRoute: IRouterState): void {
-        this.routerState = {...newRoute};
-        this.setPushState()
-    }
+    public getActiveRoute(): Route {
+        if(this.routerState.length <= 0) return null;
 
-    // private getActiveRoute(userRoutes: Array<Route>): Route {
-    //     if(userRoutes.length <= 0) return null;
-    //
-    //     const activeRoutes = userRoutes.find((route) => route.isActive);
-    //
-    //     return activeRoutes[0];
-    // }
+        return this.routerState.find((route) => route.isActive);
+    }
 }
 
 export const router = new Router(routes);
