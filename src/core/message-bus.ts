@@ -1,5 +1,7 @@
 export class MessageBus {
-    public subscriptions = { };
+    public subscriptions = {};
+
+    constructor() {}
 
     public subscribe(eventType, callback) {
         const id = this.getIdGenerator();

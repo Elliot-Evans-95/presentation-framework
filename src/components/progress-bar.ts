@@ -1,5 +1,5 @@
 import {routes} from "../user/routes";
-import {Dom} from "../core/dom";
+import {dom} from "../core/dom";
 
 export class ProgressBar extends HTMLElement {
     public progress: HTMLDivElement;
@@ -66,4 +66,4 @@ export class ProgressBar extends HTMLElement {
 customElements.define('progress-bar', ProgressBar, {extends: 'footer'});
 const progressBarElement = document.createElement('footer', { is: 'progress-bar'});
 
-Dom.addComponentToPage(progressBarElement, "afterend");
+dom.addComponentToPage(progressBarElement, "afterend");

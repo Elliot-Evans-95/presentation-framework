@@ -11,11 +11,11 @@ import './user/routes';
 import './mediator/presentation.controller';
 
 // CORE
+import './core/message-bus';
 import './core/router';
 import './core/page';
 import './core/keys';
 import './core/dom';
-import './core/message-bus';
 
 // COMPONENTS
 import './components/progress-bar';

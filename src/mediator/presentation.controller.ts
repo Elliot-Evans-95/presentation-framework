@@ -1,6 +1,6 @@
 import {Direction, Route} from "../types/types";
 import {router} from "../core/router";
-import {Dom} from "../core/dom";
+import {dom} from "../core/dom";
 
 export class PresentationController {
 
@@ -31,18 +31,18 @@ export class PresentationController {
     public static goToPage(direction: Direction): void {
         router.state = PresentationController.setNewRoute(direction);
         router.setPushState();
+
         PresentationController.rebuildDom();
     }
 
-    // should be an observer to detect changes made and fire the event
     public static rebuildDom(): void {
-        Dom.removeContent();
-        Dom.addContentToPage(router.getActiveRoute());
+        dom.removeContent();
+        dom.addContentToPage(router.getActiveRoute());
     }
 
     public static init(): void {
         const currentRoute = router.getActiveRoute();
 
-        Dom.addContentToPage(currentRoute);
+        dom.addContentToPage(currentRoute);
     }
 }

@@ -1,46 +1,49 @@
-import {appShell, pageShell} from "../helpers/globals";
 import {Route} from "../types/types";
 import {messageBus} from "./message-bus";
 
+class ShellElement {
+    private readonly HTMLElement: HTMLElement;
 
-class ShellElement extends HTMLElement {
-    public name: string;
-
-    constructor(name: string) {
-        super();
-
-        this.name = name;
+    constructor(id: string) {
+        this.HTMLElement = <HTMLElement>document.getElementById(id) || <HTMLElement>document.createElement(id);
     }
 
     get element(): HTMLElement {
-        return document.getElementById(this.name);
+        return this.HTMLElement;
     }
 
+    set innerHTML(content: string) {
+        if(!content) return;
+
+        this.HTMLElement.innerHTML = content;
+    }
 }
 
 export class Dom {
 
-    private _appShell: HTMLElement = new ShellElement('app-shell');
-    private _pageShell: HTMLElement = new ShellElement('main');
+    private _appShell = new ShellElement('app-shell');
+    private _pageShell = new ShellElement('main');
 
-    public static removeContent(): void {
-        while (appShell.firstChild) {
-            appShell.removeChild(appShell.firstChild);
+    public removeContent(): void {
+        while (this._appShell.element.firstChild) {
+            this._appShell.element.removeChild(this._appShell.element.firstChild);
         }
 
-        messageBus.publish('[DOM] Removed Content', appShell);
+        messageBus.publish('[DOM] Removed Content', this._appShell);
     }
 
-    public static addContentToPage(route: Route): void {
-        pageShell.innerHTML = route.routeHTML;
+    public addContentToPage(route: Route): void {
+        this._pageShell.innerHTML = route.routeHTML;
         document.title = route.routeName;
-        appShell.appendChild(pageShell);
+        this._appShell.element.appendChild(this._pageShell.element);
 
-        messageBus.publish('[DOM] Added Content', appShell);
+        messageBus.publish('[DOM] Added Content', this._appShell);
     };
 
-    public static addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {
-        appShell.insertAdjacentElement(insertPosition, component);
+    public addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {
+        this._appShell.element.insertAdjacentElement(insertPosition, component);
     }
 
 }
+
+export const dom = new Dom();
