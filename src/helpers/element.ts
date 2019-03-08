@@ -15,6 +15,25 @@ export class ShellElement {
         this.HTMLElement.innerHTML = content;
     }
 
+    set addClassName(className: string) {
+        this.HTMLElement.classList.add(className);
+    }
+
+    set removeClassName(className: string) {
+        this.HTMLElement.classList.remove(className);
+    }
+
+    addEventListener(listener: string): Promise<any> {
+        const htmlElement = this.HTMLElement;
+
+        return new Promise(function(resolve, reject) {
+            htmlElement.addEventListener(listener, () => {
+                // htmlElement.removeEventListener('animationend');
+                resolve();
+            })
+        });
+    }
+
 }
 
 export class NodeElement {

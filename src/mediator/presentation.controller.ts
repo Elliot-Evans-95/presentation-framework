@@ -13,11 +13,19 @@ export class PresentationController {
 
         switch (direction) {
             case Direction.NEXT:
+                if(!routerStateSnapshot[currentRouteIndex + 1]) return;
+
+                // this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
+
                 routerStateSnapshot[currentRouteIndex + 1].isActive = true;
                 break;
             case Direction.PREVIOUS:
+                if(!routerStateSnapshot[currentRouteIndex - 1]) return;
+
+                // this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
+
                 routerStateSnapshot[currentRouteIndex - 1].isActive = true;
                 break;
             default:
@@ -33,6 +41,9 @@ export class PresentationController {
         router.setPushState();
 
         PresentationController.rebuildDom();
+
+        // this also needs to trigger the animation
+        dom.triggerPageTransitionAnimation();
     }
 
     public static rebuildDom(): void {

@@ -12,3 +12,7 @@ body {
         opacity: 1;
     }
 }
+
+.animationTest {
+    animation: slideInUp 1s ease-in-out;
+}

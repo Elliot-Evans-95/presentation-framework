@@ -32,6 +32,14 @@ export class Dom {
         this._appShell.element.insertAdjacentElement(insertPosition, component);
     }
 
+    public triggerPageTransitionAnimation(): void {
+        this._pageShell.addClassName = 'animationTest';
+
+        this._pageShell
+            .addEventListener( 'animationend')
+            .then(() => this._pageShell.removeClassName = 'animationTest');
+    }
+
 }
 
 export const dom = new Dom();
