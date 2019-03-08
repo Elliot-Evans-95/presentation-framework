@@ -1,28 +1,12 @@
 import {Route} from "../types/types";
 import {messageBus} from "./message-bus";
-
-class ShellElement {
-    private readonly HTMLElement: HTMLElement;
-
-    constructor(id: string) {
-        this.HTMLElement = <HTMLElement>document.getElementById(id) || <HTMLElement>document.createElement(id);
-    }
-
-    get element(): HTMLElement {
-        return this.HTMLElement;
-    }
-
-    set innerHTML(content: string) {
-        if(!content) return;
-
-        this.HTMLElement.innerHTML = content;
-    }
-}
+import {NodeElement, ShellElement} from "../helpers/element";
 
 export class Dom {
 
     private _appShell = new ShellElement('app-shell');
     private _pageShell = new ShellElement('main');
+    private _styleShell = new NodeElement('style');
 
     public removeContent(): void {
         while (this._appShell.element.firstChild) {
@@ -33,9 +17,13 @@ export class Dom {
     }
 
     public addContentToPage(route: Route): void {
-        this._pageShell.innerHTML = route.routeHTML;
         document.title = route.routeName;
+
+        this._pageShell.innerHTML = route.routeHTML;
+        this._styleShell.style = route.routeStyle;
+
         this._appShell.element.appendChild(this._pageShell.element);
+        this._appShell.element.appendChild(this._styleShell.element);
 
         messageBus.publish('[DOM] Added Content', this._appShell);
     };

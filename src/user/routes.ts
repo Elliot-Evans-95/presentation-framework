@@ -5,14 +5,14 @@ export const routes: Readonly<Array<Route>> = [
         id: 1,
         routeName: 'pageOne',
         routeHTML: '<h1>HELLO WORLD</h1>',
-        routeStyle: '.test123 { background: aqua}',
+        routeStyle: '#app-shell { background: aqua}',
         isActive: true
     },
     {
         id: 2,
         routeName: 'pageTwo',
         routeHTML: '<h1>HELLO WORLD 2</h1>',
-        routeStyle: '.test123 { background: aqua}',
+        routeStyle: '#app-shell { background: fuchsia;}',
         isActive: false
     }
 ];

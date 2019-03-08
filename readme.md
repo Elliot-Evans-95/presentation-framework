@@ -4,7 +4,7 @@
 - Progress bar component (done)
 - Templating via HTML File (done)
 - CSS Stying in general
-- page init and page destroy hooks
+- page init and page destroy hooks (done)
 - Ability to give it a number of pages
 - Ability to implement you own themes
 - Ability to add html content
