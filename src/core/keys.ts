@@ -9,11 +9,9 @@ document.addEventListener("keydown", (event: KeyboardEvent) => {
             break;
         case "ArrowRight":
             PresentationController.goToPage(Direction.NEXT);
-            PresentationController.rebuildDom();
             break;
         case "ArrowLeft":
             PresentationController.goToPage(Direction.PREVIOUS);
-            PresentationController.rebuildDom();
             break;
     }
 });

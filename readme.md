@@ -1,8 +1,8 @@
 # Presentation Framework
 
 ## Roadmap
-- Progress bar component
-- Templating via HTML File
+- Progress bar component (done)
+- Templating via HTML File (done)
 - CSS Stying in general
 - page init and page destroy hooks
 - Ability to give it a number of pages
