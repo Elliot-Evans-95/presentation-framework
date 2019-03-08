@@ -1,19 +1,19 @@
-import {Route} from "../types/types";
+import {Messages, Names, Route} from "../types/types";
 import {messageBus} from "./message-bus";
 import {NodeElement, ShellElement} from "../helpers/element";
 
 export class Dom {
 
-    private _appShell = new ShellElement('app-shell');
-    private _pageShell = new ShellElement('main');
-    private _styleShell = new NodeElement('style');
+    private _appShell = new ShellElement(Names.SHELL);
+    private _pageShell = new ShellElement(Names.PAGE);
+    private _styleShell = new NodeElement(Names.STYLES);
 
     public removeContent(): void {
         while (this._appShell.element.firstChild) {
             this._appShell.element.removeChild(this._appShell.element.firstChild);
         }
 
-        messageBus.publish('[DOM] Removed Content', this._appShell);
+        messageBus.publish(Messages.CONTENT_REMOVED, this._appShell);
     }
 
     public addContentToPage(route: Route): void {
@@ -25,7 +25,7 @@ export class Dom {
         this._appShell.element.appendChild(this._pageShell.element);
         this._appShell.element.appendChild(this._styleShell.element);
 
-        messageBus.publish('[DOM] Added Content', this._appShell);
+        messageBus.publish(Messages.CONTENT_ADDED, this._appShell);
     };
 
     public addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {

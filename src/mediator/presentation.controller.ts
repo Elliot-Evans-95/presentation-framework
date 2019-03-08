@@ -15,7 +15,7 @@ export class PresentationController {
             case Direction.NEXT:
                 if(!routerStateSnapshot[currentRouteIndex + 1]) return;
 
-                // this setting seems like a side effect and needs to be changed
+                // @todo: this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
 
                 routerStateSnapshot[currentRouteIndex + 1].isActive = true;
@@ -23,7 +23,7 @@ export class PresentationController {
             case Direction.PREVIOUS:
                 if(!routerStateSnapshot[currentRouteIndex - 1]) return;
 
-                // this setting seems like a side effect and needs to be changed
+                // @todo: this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
 
                 routerStateSnapshot[currentRouteIndex - 1].isActive = true;
@@ -42,7 +42,7 @@ export class PresentationController {
 
         PresentationController.rebuildDom();
 
-        // this also needs to trigger the animation
+        // @todo: this setting seems like a side effect and needs to be changed
         dom.triggerPageTransitionAnimation();
     }
 

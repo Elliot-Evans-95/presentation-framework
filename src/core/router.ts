@@ -26,7 +26,7 @@ export class Router {
     }
 
     public getActiveRoute(): Route {
-        // Find a way of retaining the current router state before it is changed so that the app does not break
+        // @todo: Find a way of retaining the current router state before it is changed so that the app does not break
         if(!this.routerState || this.routerState.length <= 0) return null;
 
         return this.routerState.find((route) => route.isActive);

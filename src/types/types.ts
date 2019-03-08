@@ -6,12 +6,19 @@ export type Route = {
     isActive: boolean,
 }
 
-export interface IRouterState {
-    prev: Route;
-    current: Route;
-}
-
 export enum Direction {
     NEXT = 'next',
     PREVIOUS = 'prev'
+}
+
+export enum Names {
+    STYLES = 'style',
+    SHELL = 'app-shell',
+    PAGE = 'page',
+    POPUP = '/popup.html'
+}
+
+export enum Messages {
+    CONTENT_ADDED = '[DOM] Added Content',
+    CONTENT_REMOVED = '[DOM] Removed Content',
 }
