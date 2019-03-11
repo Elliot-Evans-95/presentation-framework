@@ -13,7 +13,6 @@ describe('Given a new version of the Dom class has been made', () => {
         expect(dom).not.toEqual(null);
     });
 
-
     describe('when "addContentToPage" is called', () => {
         let fakeRoute: Route;
         let fakeApp: HTMLElement;
@@ -31,13 +30,11 @@ describe('Given a new version of the Dom class has been made', () => {
             fakeApp.setAttribute('id', Names.SHELL)
         });
 
-        // test('then elements are added to the app shell', () => {
-        //     dom.addContentToPage(fakeRoute);
-        //
-        //     console.log( JSON.stringify( (dom as any)._document.document.documentElement) );
-        //
-        //     expect((dom as any)._document).not.toEqual(null);
-        // });
+        test('then elements are added to the document', () => {
+            dom.addContentToPage(fakeRoute);
+
+            expect((dom as any)._document.document.innerHTML).not.toEqual(null);
+        });
 
         test('then the title of the tab is changed', () => {
             dom.addContentToPage(fakeRoute);
