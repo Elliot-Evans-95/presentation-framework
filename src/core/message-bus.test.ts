@@ -1,41 +1,22 @@
-export class MessageBus {
-    public subscriptions = {};
+import {MessageBus} from "./message-bus";
+import {Messages} from "../types/types";
 
-    constructor() {}
+describe('Given a new version of the message bus class has been made', () => {
+    let messageBus: MessageBus;
 
-    public subscribe(eventType, callback) {
-        const id = this.getIdGenerator();
+    beforeAll( () => {
+        messageBus = new MessageBus();
+    });
 
-        if(!this.subscriptions[eventType])
-            this.subscriptions[eventType] = {};
+    describe('when "publish" is called', () => {
 
-        this.subscriptions[eventType][id] = callback;
+        test('then the "subscribe" function fires with the publish value', () => {
+            let fakeCallBack = (event) => expect(event).toEqual('test');
 
-        return {
-            unsubscribe: () => {
-                delete this.subscriptions[eventType][id];
+            messageBus.subscribe(Messages.CONTENT_ADDED, fakeCallBack);
+            messageBus.publish(Messages.CONTENT_ADDED, 'test');
+        });
 
-                if(Object.keys(this.subscriptions[eventType]).length === 0) delete this.subscriptions[eventType];
-            }
-        }
-    }
+    });
 
-    public publish(eventType, arg) {
-        if(!this.subscriptions[eventType]) return;
-
-        Object.keys(this.subscriptions[eventType])
-            .forEach(key => this.subscriptions[eventType][key](arg))
-    }
-
-    public getIdGenerator() {
-        let lastId = 0;
-
-        return function getNextUniqueId() {
-            lastId += 1;
-
-            return lastId;
-        }
-    }
-}
-
-export const messageBus = new MessageBus();
+});
