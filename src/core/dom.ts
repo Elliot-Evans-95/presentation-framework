@@ -1,12 +1,13 @@
 import {Messages, Names, Route} from "../types/types";
 import {messageBus} from "./message-bus";
-import {NodeElement, ShellElement} from "../helpers/element";
+import {DocumentWrapper, NodeElement, ShellElement} from "../helpers/element";
 
 export class Dom {
 
-    private _appShell = new ShellElement(Names.SHELL);
-    private _pageShell = new ShellElement(Names.PAGE);
-    private _styleShell = new NodeElement(Names.STYLES);
+    private readonly _appShell = new ShellElement(Names.SHELL);
+    private readonly _pageShell = new ShellElement(Names.PAGE);
+    private readonly _styleShell = new NodeElement(Names.STYLES);
+    private readonly _document = new DocumentWrapper(document);
 
     public removeContent(): void {
         while (this._appShell.element.firstChild) {
@@ -17,8 +18,7 @@ export class Dom {
     }
 
     public addContentToPage(route: Route): void {
-        document.title = route.routeName;
-
+        this._document.title = route.routeName;
         this._pageShell.innerHTML = route.routeHTML;
         this._styleShell.style = route.routeStyle;
 

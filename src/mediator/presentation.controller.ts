@@ -1,13 +1,14 @@
 import {Direction, Route} from "../types/types";
-import {router} from "../core/router";
 import {dom} from "../core/dom";
+import {RouterHelper} from "../core/router/router-helper";
+import {RouterTransformer} from "../core/router/router-transformer";
 
-export class PresentationController {
+export abstract class PresentationController {
 
     public static setNewRoute(direction: Direction): Array<Route> {
-        const currentRoute = router.getActiveRoute();
+        const currentRoute = RouterHelper.retrieveActiveRoute();
         const currentRouteIndex = currentRoute.id - 1;
-        const routerStateSnapshot = router.state;
+        const routerStateSnapshot = RouterTransformer.retrieveCurrentRouter();
 
         routerStateSnapshot[currentRouteIndex].isActive = false;
 
@@ -37,8 +38,9 @@ export class PresentationController {
     }
 
     public static goToPage(direction: Direction): void {
-        router.state = PresentationController.setNewRoute(direction);
-        router.setPushState();
+
+        RouterTransformer.generateNewRouter(PresentationController.setNewRoute(direction));
+        RouterHelper.updateHistoryPushState();
 
         PresentationController.rebuildDom();
 
@@ -48,11 +50,11 @@ export class PresentationController {
 
     public static rebuildDom(): void {
         dom.removeContent();
-        dom.addContentToPage(router.getActiveRoute());
+        dom.addContentToPage(RouterHelper.retrieveActiveRoute());
     }
 
     public static init(): void {
-        const currentRoute = router.getActiveRoute();
+        const currentRoute = RouterHelper.retrieveActiveRoute();
 
         dom.addContentToPage(currentRoute);
     }

@@ -14,7 +14,7 @@ export enum Direction {
 export enum Names {
     STYLES = 'style',
     SHELL = 'app-shell',
-    PAGE = 'page',
+    PAGE = 'main',
     POPUP = '/popup.html'
 }
 
