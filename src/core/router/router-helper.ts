@@ -10,7 +10,6 @@ export abstract class RouterHelper {
     }
 
     public static updateHistoryPushState(): void {
-        console.log('FIRE');
         window.history.pushState(
             null,
             `/${RouterHelper.retrieveActiveRoute()}`,

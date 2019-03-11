@@ -5,13 +5,9 @@ import {messageBus} from "./message-bus";
 describe('Given a new version of the Dom class has been made', () => {
     let dom: Dom;
 
-    beforeAll( () => {
-        dom = new Dom();
-    });
+    beforeAll( () => dom = new Dom());
 
-    test('dom is constructed', () => {
-        expect(dom).not.toEqual(null);
-    });
+    test('dom is constructed', () => expect(dom).not.toEqual(null));
 
     describe('when "addContentToPage" is called', () => {
         let fakeRoute: Route;

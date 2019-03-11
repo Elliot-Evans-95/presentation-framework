@@ -8,7 +8,6 @@ export class Router {
     constructor(userRoutes: Array<Route>) {
         this._routerState = userRoutes;
         // RouterHelper.setHistoryPushState(userRoutes);
-
     }
 
     public get state(): Array<Route> {
