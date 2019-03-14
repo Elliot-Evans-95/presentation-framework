@@ -28,7 +28,7 @@ export class ProgressBar extends HTMLElement {
         `
             :host {
                 width: 100vw;
-                background-color: #ddd !important;
+                background-color: var(--text-heading-color) !important;
                 height: 18px;
             }
             #progress {
@@ -36,8 +36,8 @@ export class ProgressBar extends HTMLElement {
                 position: relative;
                 overflow: hidden;
                 max-width: 0;
-                background-color: #00838f;
-                transition: max-width 300ms ease-in-out;
+                background-color: var(--primary-color);
+                transition: max-width var(--default-transition-speed) var(--default-transition-style);
                 box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
             }
         `;

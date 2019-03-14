@@ -33,11 +33,11 @@ export class Dom {
     }
 
     public triggerPageTransitionAnimation(): void {
-        this._pageShell.addClassName = 'animationTest';
+        this._pageShell.addClassName = 'defaultPageTransition';
 
         this._pageShell
             .addEventListener( 'animationend')
-            .then(() => this._pageShell.removeClassName = 'animationTest');
+            .then(() => this._pageShell.removeClassName = 'defaultPageTransition');
     }
 
 }
