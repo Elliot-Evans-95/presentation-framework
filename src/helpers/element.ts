@@ -26,12 +26,7 @@ export class ShellElement {
     addEventListener(listener: string): Promise<any> {
         const htmlElement = this.HTMLElement;
 
-        return new Promise(function(resolve, reject) {
-            htmlElement.addEventListener(listener, () => {
-                // htmlElement.removeEventListener('animationend');
-                resolve();
-            })
-        });
+        return new Promise(resolve => htmlElement.addEventListener(listener, () => resolve()));
     }
 
 }

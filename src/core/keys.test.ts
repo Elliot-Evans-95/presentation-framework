@@ -8,9 +8,6 @@ beforeAll( () => {
         addEventListener: jest.fn((event, callback) => {
             map[event] = callback;
         }),
-        dispatchEvent: jest.fn( (event) => {
-            mockDocument.addEventListener(event);
-        }),
     };
 
     mockDocument.addEventListener("keydown", (event: KeyboardEvent) => {

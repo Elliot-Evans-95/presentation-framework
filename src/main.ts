@@ -15,7 +15,6 @@ import './core/message-bus';
 import './core/router/router-transformer';
 import './core/router/router-helper';
 import './core/router/router';
-import './core/page';
 import './core/keys';
 import './core/dom';
 

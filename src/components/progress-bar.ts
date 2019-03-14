@@ -16,6 +16,7 @@ export class ProgressBar extends HTMLElement {
         this._currentPercentage = 0;
 
         this.setAttribute('id', 'progressBar');
+        this.setAttribute('class', 'footer');
 
         const shadow = this.attachShadow({mode: 'open'});
 
@@ -30,7 +31,7 @@ export class ProgressBar extends HTMLElement {
             }
             #progress {
                 background: red;
-                height: 1rem;
+                height: 18px;
                 max-width: 0%;
             }
         `;
