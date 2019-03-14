@@ -11,11 +11,11 @@ A lot of current presentation frameworks are requested to be cloned or who are o
 ## Roadmap
 
 ### V1
-- Progress bar component (done)
-- Templating via HTML File (done)
-- CSS Stying in general (done)
-- page init and page destroy hooks (done)
-- page transitions animations (done)
+- Progress bar component ✔
+- Templating via HTML File ✔
+- CSS Stying in general ✔
+- page init and page destroy hooks ✔
+- page transitions animations ✔
 
 
 - Test all classes
