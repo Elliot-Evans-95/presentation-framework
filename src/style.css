@@ -10,6 +10,8 @@ body {
     -webkit-text-stroke: 0.1px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    overflow: hidden;
 }
 
 h1, h2, h3, h4, h5 {
@@ -32,8 +34,20 @@ p {
     }
 }
 
+@keyframes slideFromRight {
+    from {
+        position: relative;
+        left: 100%;
+    }
+    to {
+        position: relative;
+        left: 0;
+    }
+}
+
 .animationTest {
-    animation: slideInUp 1s ease-in-out;
+    /*animation: slideInUp 300ms ease-in-out;*/
+    animation: slideFromRight 300ms ease-in-out;
 }
 
 
@@ -55,6 +69,10 @@ p {
     background: #00838f;
     box-shadow: 0px -2px 20px 0px rgba(0, 0, 0, 0.5);
     z-index: 99;
+
+    position: fixed;
+    width: 100vw;
+    bottom: 0;
 }
 
 .header {
@@ -63,8 +81,18 @@ p {
     background: #00838f;
     box-shadow: 0 4px 10px 2px rgba(0, 0, 0, 0.5);
     z-index: 99;
+
+    position: fixed;
+    width: 100vw;
+    top: 0;
+
+    padding: 0 1rem;
 }
 
 .content {
    grid-area: content;
+}
+
+#app-shell {
+    margin: 1rem;
 }

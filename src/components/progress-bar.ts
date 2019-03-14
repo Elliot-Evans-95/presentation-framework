@@ -28,11 +28,17 @@ export class ProgressBar extends HTMLElement {
         `
             :host {
                 width: 100vw;
+                background-color: #ddd !important;
+                height: 18px;
             }
             #progress {
-                background: red;
                 height: 18px;
-                max-width: 0%;
+                position: relative;
+                overflow: hidden;
+                max-width: 0;
+                background-color: #00838f;
+                transition: max-width 300ms ease-in-out;
+                box-shadow: 2px 2px 4px 2px rgba(0, 0, 0, 0.25);
             }
         `;
         shadow.appendChild(style);
