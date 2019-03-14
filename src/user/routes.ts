@@ -4,10 +4,10 @@ export const routes: Readonly<Array<Route>> = [
     {
         id: 1,
         routeName: 'pageOne',
-        routeHTML: '<h1>Page one of presentation</h1>',
+        routeHTML: '<p>Page one of presentation</p>',
         routeStyle: `
             #app-shell { 
-                background: aqua;
+                //background: aqua;
             }
         `,
         isActive: true
@@ -15,10 +15,10 @@ export const routes: Readonly<Array<Route>> = [
     {
         id: 2,
         routeName: 'pageTwo',
-        routeHTML: '<h1>Page two of presentation</h1>',
+        routeHTML: '<p>Page two of presentation</p>',
         routeStyle: `
             #app-shell { 
-                background: fuchsia;
+                //background: fuchsia;
             }
         `,
         isActive: false
