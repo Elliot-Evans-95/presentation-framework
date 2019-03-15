@@ -17,26 +17,20 @@ export abstract class PresentationController {
             case Direction.NEXT:
                 if(!routerStateSnapshot[currentRouteIndex + 1]) return;
 
-
-                // FIRE to the component bus, an observer pattern
                 componentBus.publish(ComponentEvents.DIRECTION, Direction.NEXT);
-
-                // @todo: this setting seems like a side effect and needs to be changed
-                document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
-
                 routerStateSnapshot[currentRouteIndex + 1].isActive = true;
+
                 break;
             case Direction.PREVIOUS:
                 if(!routerStateSnapshot[currentRouteIndex - 1]) return;
 
                 componentBus.publish(ComponentEvents.DIRECTION, Direction.PREVIOUS);
-                // @todo: this setting seems like a side effect and needs to be changed
-                document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
-
                 routerStateSnapshot[currentRouteIndex - 1].isActive = true;
+
                 break;
             default:
                 routerStateSnapshot[currentRouteIndex].isActive = true;
+
                 break;
         }
 
