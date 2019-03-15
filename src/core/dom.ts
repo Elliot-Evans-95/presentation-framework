@@ -1,5 +1,5 @@
 import {Messages, Names, Route} from "../types/types";
-import {messageBus} from "./message-bus";
+import {messageBus} from "./bus/message-bus";
 import {DocumentWrapper, NodeElement, ShellElement} from "../helpers/element";
 
 export class Dom {

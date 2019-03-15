@@ -1,5 +1,7 @@
 import {routes} from "../user/routes";
 import {dom} from "../core/dom";
+import {componentBus} from "../core/bus/component-bus";
+import {ComponentEvents, Direction} from "../types/types";
 
 export class ProgressBar extends HTMLElement {
     public progress: HTMLDivElement;
@@ -47,6 +49,14 @@ export class ProgressBar extends HTMLElement {
 
     static get observedAttributes() {
         return ['movement'];
+    }
+
+    connectedCallback() {
+        componentBus.subscribe(ComponentEvents.DIRECTION, event => this.retrieveDirection(event));
+    }
+
+    retrieveDirection(event: Direction) {
+        this.progress.setAttribute('movement', event);
     }
 
     setProgress(width) {

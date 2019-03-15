@@ -1,5 +1,5 @@
 import {PresentationController} from "./presentation.controller";
-import {messageBus} from "../core/message-bus";
+import {messageBus} from "../core/bus/message-bus";
 import {Direction, Route} from "../types/types";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";

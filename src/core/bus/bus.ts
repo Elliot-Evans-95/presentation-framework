@@ -1,5 +1,6 @@
-export class MessageBus {
+export class Bus {
     public subscriptions = {};
+    private _index: number = 0;
 
     constructor() {}
 
@@ -14,7 +15,6 @@ export class MessageBus {
         return {
             unsubscribe: () => {
                 delete this.subscriptions[eventType][id];
-
                 if(Object.keys(this.subscriptions[eventType]).length === 0) delete this.subscriptions[eventType];
             }
         }
@@ -23,19 +23,18 @@ export class MessageBus {
     public publish(eventType, arg) {
         if(!this.subscriptions[eventType]) return;
 
-        Object.keys(this.subscriptions[eventType])
+        Object
+            .keys(this.subscriptions[eventType])
             .forEach(key => this.subscriptions[eventType][key](arg))
     }
 
     public getIdGenerator() {
-        let lastId = 0;
+        if (this._index > 0) {
+            this._index =+ this._index;
 
-        return function getNextUniqueId() {
-            lastId += 1;
-
-            return lastId;
+            return this._index;
         }
+
+        return this._index;
     }
 }
-
-export const messageBus = new MessageBus();

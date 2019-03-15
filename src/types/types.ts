@@ -22,3 +22,7 @@ export enum Messages {
     CONTENT_ADDED = '[DOM] Added Content',
     CONTENT_REMOVED = '[DOM] Removed Content',
 }
+
+export enum ComponentEvents {
+    DIRECTION = '[ROUTER] Direction changed',
+}

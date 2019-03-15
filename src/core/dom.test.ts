@@ -1,6 +1,6 @@
 import {Dom} from "./dom";
 import {Names, Route} from "../types/types";
-import {messageBus} from "./message-bus";
+import {messageBus} from "./bus/message-bus";
 
 describe('Given a new version of the Dom class has been made', () => {
     let dom: Dom;

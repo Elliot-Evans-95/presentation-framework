@@ -1,11 +1,11 @@
-import {MessageBus} from "./message-bus";
-import {Messages} from "../types/types";
+import {Messages} from "../../types/types";
+import {Bus} from "./bus";
 
 describe('Given a new version of the message bus class has been made', () => {
-    let messageBus: MessageBus;
+    let messageBus: Bus;
 
     beforeAll( () => {
-        messageBus = new MessageBus();
+        messageBus = new Bus();
     });
 
     describe('when "publish" is called', () => {

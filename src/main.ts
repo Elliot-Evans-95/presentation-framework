@@ -11,7 +11,7 @@ import './user/routes';
 import './mediator/presentation.controller';
 
 // CORE
-import './core/message-bus';
+import './core/bus/message-bus';
 import './core/router/router-transformer';
 import './core/router/router-helper';
 import './core/router/router';

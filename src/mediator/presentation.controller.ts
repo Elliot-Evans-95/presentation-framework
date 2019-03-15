@@ -1,7 +1,8 @@
-import {Direction, Route} from "../types/types";
+import {ComponentEvents, Direction, Route} from "../types/types";
 import {dom} from "../core/dom";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";
+import {componentBus} from "../core/bus/component-bus";
 
 export abstract class PresentationController {
 
@@ -16,6 +17,10 @@ export abstract class PresentationController {
             case Direction.NEXT:
                 if(!routerStateSnapshot[currentRouteIndex + 1]) return;
 
+
+                // FIRE to the component bus, an observer pattern
+                componentBus.publish(ComponentEvents.DIRECTION, Direction.NEXT);
+
                 // @todo: this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.NEXT);
 
@@ -24,6 +29,7 @@ export abstract class PresentationController {
             case Direction.PREVIOUS:
                 if(!routerStateSnapshot[currentRouteIndex - 1]) return;
 
+                componentBus.publish(ComponentEvents.DIRECTION, Direction.PREVIOUS);
                 // @todo: this setting seems like a side effect and needs to be changed
                 document.getElementById('progressBar').setAttribute('movement', Direction.PREVIOUS);
 
