@@ -4,7 +4,7 @@ import {PresentationController} from "./mediator/presentation.controller";
 // GLOBAL HELPERS
 import './helpers/globals';
 
-// USER
+// USER ROUTES
 import './user/routes';
 
 // MEDIATOR
@@ -20,5 +20,8 @@ import './core/dom';
 
 // COMPONENTS
 import './components/progress-bar';
+
+// USER SETTINGS
+import './user/animation';
 
 PresentationController.init();

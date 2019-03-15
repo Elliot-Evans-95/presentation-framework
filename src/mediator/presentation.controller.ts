@@ -1,8 +1,9 @@
-import {ComponentEvents, Direction, Route} from "../types/types";
+import {ComponentEvents, Direction, Messages, Route} from "../types/types";
 import {dom} from "../core/dom";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";
 import {componentBus} from "../core/bus/component-bus";
+import {messageBus} from "../core/bus/message-bus";
 
 export abstract class PresentationController {
 
@@ -44,8 +45,7 @@ export abstract class PresentationController {
 
         PresentationController.rebuildDom();
 
-        // @todo: this setting seems like a side effect and needs to be changed
-        dom.triggerPageTransitionAnimation();
+        messageBus.publish(Messages.PAGE_CHANGED, null);
     }
 
     public static rebuildDom(): void {
