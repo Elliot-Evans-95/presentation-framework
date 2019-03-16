@@ -12,13 +12,13 @@ export abstract class PresentationController {
         const currentRouteIndex = currentRoute.id - 1;
         const routerStateSnapshot = RouterTransformer.retrieveCurrentRouter();
 
-        routerStateSnapshot[currentRouteIndex].isActive = false;
-
         switch (direction) {
             case Direction.NEXT:
                 if(!routerStateSnapshot[currentRouteIndex + 1]) return;
 
                 componentBus.publish(ComponentEvents.DIRECTION, Direction.NEXT);
+
+                routerStateSnapshot[currentRouteIndex].isActive = false;
                 routerStateSnapshot[currentRouteIndex + 1].isActive = true;
 
                 break;
@@ -26,6 +26,8 @@ export abstract class PresentationController {
                 if(!routerStateSnapshot[currentRouteIndex - 1]) return;
 
                 componentBus.publish(ComponentEvents.DIRECTION, Direction.PREVIOUS);
+
+                routerStateSnapshot[currentRouteIndex].isActive = false;
                 routerStateSnapshot[currentRouteIndex - 1].isActive = true;
 
                 break;
@@ -39,7 +41,6 @@ export abstract class PresentationController {
     }
 
     public static goToPage(direction: Direction): void {
-
         RouterTransformer.generateNewRouter(PresentationController.setNewRoute(direction));
         RouterHelper.updateHistoryPushState();
 
