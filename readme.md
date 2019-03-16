@@ -16,10 +16,8 @@ A lot of current presentation frameworks are requested to be cloned or who are o
 - CSS Stying in general ✔
 - page init and page destroy hooks ✔
 - page transitions animations ✔
-
-
-- Test all classes
-- Clean up any side effects
+- Test all classes ✔
+- Clean up any side effects ✔
 
 ### V2
 - Ability to use the built-in animations for transitions and animations

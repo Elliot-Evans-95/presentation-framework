@@ -32,10 +32,9 @@ let router: Router;
 beforeAll(() => router = new Router(fakeRoutes));
 
 describe('When a "retrieveCurrentRouter" is called', () => {
-    test('Then the current router state is returned', () => {
-        RouterTransformer.retrieveCurrentRouter();
+    beforeAll(() => spyOn(RouterTransformer, 'retrieveCurrentRouter').and.returnValue(router.state));
 
-        expect(RouterTransformer.retrieveCurrentRouter()).toEqual(router.state);
-    });
+    test('Then the current router state is returned', () =>
+        expect(RouterTransformer.retrieveCurrentRouter()).toEqual(fakeRoutes));
 });
 

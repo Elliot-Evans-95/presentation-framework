@@ -3,6 +3,32 @@ import {messageBus} from "../core/bus/message-bus";
 import {Direction, Route} from "../types/types";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";
+import {Router} from "../core/router/router";
+
+const fakeRoutes: Readonly<Array<Route>> = [
+    {
+        id: 1,
+        routeName: 'pageOne',
+        routeHTML: '<h1>Page one of presentation</h1>',
+        routeStyle: `
+            #app-shell { 
+                background: aqua;
+            }
+        `,
+        isActive: true
+    },
+    {
+        id: 2,
+        routeName: 'pageTwo',
+        routeHTML: '<h1>Page two of presentation</h1>',
+        routeStyle: `
+            #app-shell { 
+                background: fuchsia;
+            }
+        `,
+        isActive: false
+    }
+];
 
 describe('When the "init" is called on the PresentationController', () => {
     test('Then publish message is fired', () => {
@@ -25,34 +51,7 @@ describe('When the "rebuildDom" is called on the PresentationController', () => 
 });
 
 describe('When the "goToPage" is called on the PresentationController', () => {
-    beforeAll( () => {
-        const fakeRoutes: Readonly<Array<Route>> = [
-            {
-                id: 1,
-                routeName: 'pageOne',
-                routeHTML: '<h1>Page one of presentation</h1>',
-                routeStyle: `
-            #app-shell { 
-                background: aqua;
-            }
-        `,
-                isActive: true
-            },
-            {
-                id: 2,
-                routeName: 'pageTwo',
-                routeHTML: '<h1>Page two of presentation</h1>',
-                routeStyle: `
-            #app-shell { 
-                background: fuchsia;
-            }
-        `,
-                isActive: false
-            }
-        ];
-
-        spyOn(PresentationController, 'setNewRoute').and.returnValue(fakeRoutes);
-    });
+    beforeAll( () => spyOn(PresentationController, 'setNewRoute').and.returnValue(fakeRoutes));
 
     test('Then "publish" is fired', () => {
         const publishSpy = spyOn(messageBus, 'publish');
@@ -89,6 +88,8 @@ describe('When the "goToPage" is called on the PresentationController', () => {
 });
 
 describe('When the "setNewRoute" is called on the PresentationController', () => {
+    let router: Router;
+
     beforeAll( () => {
         const fakeRoute: Readonly<Route> = {
             id: 1,
@@ -102,14 +103,40 @@ describe('When the "setNewRoute" is called on the PresentationController', () =>
             isActive: true
         };
 
+        router = new Router(fakeRoutes);
+
         spyOn(RouterHelper, 'retrieveActiveRoute').and.returnValue(fakeRoute);
+        spyOn(RouterTransformer, 'retrieveCurrentRouter').and.returnValue(router.state);
     });
 
-    test('Then publish message is fired', () => {
-        const publishSpy = spyOn(messageBus, 'publish');
+    test('Then it sets the "NEXT" route as the active route', () => {
+        const fakeChangedActiveRoutes: Readonly<Array<Route>> = [
+            {
+                id: 1,
+                routeName: 'pageOne',
+                routeHTML: '<h1>Page one of presentation</h1>',
+                routeStyle: `
+            #app-shell { 
+                background: aqua;
+            }
+        `,
+                isActive: false
+            },
+            {
+                id: 2,
+                routeName: 'pageTwo',
+                routeHTML: '<h1>Page two of presentation</h1>',
+                routeStyle: `
+            #app-shell { 
+                background: fuchsia;
+            }
+        `,
+                isActive: true
+            }
+        ];
 
         PresentationController.setNewRoute(Direction.NEXT);
 
-        expect(publishSpy).toHaveBeenCalled();
+        expect(router.state).toEqual(fakeChangedActiveRoutes);
     });
 });
