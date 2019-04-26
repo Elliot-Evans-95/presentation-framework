@@ -1,10 +1,15 @@
-export class Bus {
+export class Mediator {
+    // subscribe (name: string, callback: () => any): any;
+    // publish (name: string, data: any): void;
+}
+
+export class Bus implements Mediator {
     public subscriptions = {};
     private _index: number = 0;
 
     constructor() {}
 
-    public subscribe(eventType, callback) {
+    public subscribe(eventType, callback): any {
         const id = this.getIdGenerator();
 
         if(!this.subscriptions[eventType])
@@ -20,7 +25,7 @@ export class Bus {
         }
     }
 
-    public publish(eventType, arg) {
+    public publish(eventType, arg): void {
         if(!this.subscriptions[eventType]) return;
 
         Object

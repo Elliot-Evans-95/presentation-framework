@@ -1,6 +1,4 @@
 import {Direction, Messages} from "../types/types";
-import {PresentationController} from "../visitor/presentation.controller";
-import {Presentation} from "../main";
 import {messageBus} from "./mediator/message-bus";
 
 document.addEventListener("keydown", (event: KeyboardEvent) => {

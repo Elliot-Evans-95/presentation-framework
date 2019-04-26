@@ -7,7 +7,7 @@ export class Animation {
         this._pageShell = pageShell;
     }
 
-    pageAnimation() {
+    triggerPageAnimation() {
         this._pageShell.addClassName = 'defaultPageTransition';
 
         this._pageShell

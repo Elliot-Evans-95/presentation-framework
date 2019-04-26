@@ -1,11 +1,15 @@
-import {Messages, Names, Route} from "../types/types";
+import {Messages, Route} from "../types/types";
 import {messageBus} from "./mediator/message-bus";
 import {ShellElement} from "../helpers/shell-element";
 import {NodeElement} from "../helpers/node-element";
 import {DocumentWrapper} from "../helpers/document-wrapper";
 
-export class Dom {
+export interface Dom {
+    add: (content: any) => void;
+    remove: () => void;
+}
 
+export class Slide implements Dom {
     private readonly _appShell;
     private readonly _pageShell;
     private readonly _styleShell;
@@ -17,11 +21,11 @@ export class Dom {
         this._styleShell = styleShell;
         this._document = document;
 
-        this.removeContent();
-        this.addContentToPage(route);
+        this.remove();
+        this.add(route);
     }
 
-    public removeContent(): void {
+    public remove(): void {
         while (this._appShell.element.firstChild) {
             this._appShell.element.removeChild(this._appShell.element.firstChild);
         }
@@ -29,7 +33,7 @@ export class Dom {
         messageBus.publish(Messages.CONTENT_REMOVED, this._appShell);
     }
 
-    public addContentToPage(route: Route): void {
+    public add(route: Route): void {
         this._document.title = route.routeName;
         this._pageShell.innerHTML = route.routeHTML;
         this._styleShell.style = route.routeStyle;
@@ -40,18 +44,4 @@ export class Dom {
         messageBus.publish(Messages.CONTENT_ADDED, this._appShell);
     };
 
-    // public addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {
-    //     this._appShell.element.insertAdjacentElement(insertPosition, component);
-    // }
-
-    public triggerPageTransitionAnimation(): void {
-        this._pageShell.addClassName = 'defaultPageTransition';
-
-        this._pageShell
-            .addEventListener('animationend')
-            .then(() => this._pageShell.removeClassName = 'defaultPageTransition');
-    }
-
 }
-
-// export const dom = new Dom();
