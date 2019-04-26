@@ -57,7 +57,7 @@ body {
 
     background: var(--bg-color);
 
-    -webkit-text-stroke: 0.1px;
+    -webkit-text-stroke-width: 0.1px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 

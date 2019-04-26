@@ -1,4 +1,4 @@
-export type Route = {
+export interface Route {
     id: number,
     routeName: string,
     routeHTML: string,
@@ -15,7 +15,6 @@ export enum Names {
     STYLES = 'style',
     SHELL = 'app-shell',
     PAGE = 'main',
-    POPUP = '/popup.html'
 }
 
 export enum Messages {

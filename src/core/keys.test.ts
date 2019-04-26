@@ -1,5 +1,5 @@
-import {Direction, Names} from "../types/types";
-import {PresentationController} from "../mediator/presentation.controller";
+import {Direction} from "../types/types";
+import {PresentationController} from "../visitor/presentation.controller";
 
 const map: any = {};
 
@@ -12,10 +12,6 @@ beforeAll( () => {
 
     mockDocument.addEventListener("keydown", (event: KeyboardEvent) => {
         switch (event.key) {
-            case "n":
-                window.open(Names.POPUP, '', 'width=350, height=250, scrollbars=yes, resizable=yes');
-
-                break;
             case "ArrowRight":
                 PresentationController.goToPage(Direction.NEXT);
                 break;

@@ -1,4 +1,4 @@
-import {messageBus} from "../core/bus/message-bus";
+import {messageBus} from "../core/mediator/message-bus";
 import {dom} from "../core/dom";
 import {Messages} from "../types/types";
 

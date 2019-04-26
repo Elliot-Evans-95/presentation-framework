@@ -2,8 +2,8 @@ import {ComponentEvents, Direction, Messages, Route} from "../types/types";
 import {dom} from "../core/dom";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";
-import {componentBus} from "../core/bus/component-bus";
-import {messageBus} from "../core/bus/message-bus";
+import {componentBus} from "../core/mediator/component-bus";
+import {messageBus} from "../core/mediator/message-bus";
 
 export abstract class PresentationController {
 

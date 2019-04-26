@@ -1,6 +1,5 @@
 import {routes} from "../user/routes";
-import {dom} from "../core/dom";
-import {componentBus} from "../core/bus/component-bus";
+import {componentBus} from "../core/mediator/component-bus";
 import {ComponentEvents, Direction} from "../types/types";
 
 export class ProgressBar extends HTMLElement {
@@ -79,8 +78,3 @@ export class ProgressBar extends HTMLElement {
     }
 
 }
-
-customElements.define('progress-bar', ProgressBar, {extends: 'footer'});
-const progressBarElement = document.createElement('footer', { is: 'progress-bar'});
-
-dom.addComponentToPage(progressBarElement, "afterend");
