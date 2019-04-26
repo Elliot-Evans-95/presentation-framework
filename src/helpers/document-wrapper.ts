@@ -9,4 +9,7 @@ export class DocumentWrapper {
         this.document.title = title;
     }
 
+    createElement(htmlElementName: string, options?: { is: string }): HTMLElement {
+        return this.document.createElement(htmlElementName, options);
+    }
 }

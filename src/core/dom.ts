@@ -6,10 +6,20 @@ import {DocumentWrapper} from "../helpers/document-wrapper";
 
 export class Dom {
 
-    private readonly _appShell = new ShellElement(Names.SHELL);
-    private readonly _pageShell = new ShellElement(Names.PAGE);
-    private readonly _styleShell = new NodeElement(Names.STYLES);
-    private readonly _document = new DocumentWrapper(document);
+    private readonly _appShell;
+    private readonly _pageShell;
+    private readonly _styleShell;
+    private readonly _document;
+
+    constructor(route: Route, appShell: ShellElement, pageShell: ShellElement, styleShell: NodeElement, document: DocumentWrapper) {
+        this._appShell = appShell;
+        this._pageShell = pageShell;
+        this._styleShell = styleShell;
+        this._document = document;
+
+        this.removeContent();
+        this.addContentToPage(route);
+    }
 
     public removeContent(): void {
         while (this._appShell.element.firstChild) {
@@ -30,18 +40,18 @@ export class Dom {
         messageBus.publish(Messages.CONTENT_ADDED, this._appShell);
     };
 
-    public addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {
-        this._appShell.element.insertAdjacentElement(insertPosition, component);
-    }
+    // public addComponentToPage(component: HTMLElement, insertPosition?: InsertPosition) {
+    //     this._appShell.element.insertAdjacentElement(insertPosition, component);
+    // }
 
     public triggerPageTransitionAnimation(): void {
         this._pageShell.addClassName = 'defaultPageTransition';
 
         this._pageShell
-            .addEventListener( 'animationend')
+            .addEventListener('animationend')
             .then(() => this._pageShell.removeClassName = 'defaultPageTransition');
     }
 
 }
 
-export const dom = new Dom();
+// export const dom = new Dom();

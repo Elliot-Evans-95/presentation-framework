@@ -1,9 +1,17 @@
-import {messageBus} from "../core/mediator/message-bus";
-import {dom} from "../core/dom";
-import {Messages} from "../types/types";
+import { ShellElement } from "../helpers/shell-element";
 
-messageBus.subscribe(Messages.PAGE_CHANGED, () => triggerAnimation());
+export class Animation {
+    private readonly _pageShell: ShellElement;
 
-function triggerAnimation() {
-    dom.triggerPageTransitionAnimation();
+    constructor(pageShell: ShellElement) {
+        this._pageShell = pageShell;
+    }
+
+    pageAnimation() {
+        this._pageShell.addClassName = 'defaultPageTransition';
+
+        this._pageShell
+            .addEventListener('animationend')
+            .then(() => this._pageShell.removeClassName = 'defaultPageTransition');
+    }
 }

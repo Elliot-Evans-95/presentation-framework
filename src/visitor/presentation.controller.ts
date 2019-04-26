@@ -1,5 +1,4 @@
 import {ComponentEvents, Direction, Messages, Route} from "../types/types";
-import {dom} from "../core/dom";
 import {RouterHelper} from "../core/router/router-helper";
 import {RouterTransformer} from "../core/router/router-transformer";
 import {componentBus} from "../core/mediator/component-bus";
@@ -50,13 +49,13 @@ export abstract class PresentationController {
     }
 
     public static rebuildDom(): void {
-        dom.removeContent();
-        dom.addContentToPage(RouterHelper.retrieveActiveRoute());
+        // dom.removeContent();
+        // dom.addContentToPage(RouterHelper.retrieveActiveRoute());
+        // new Dom(RouterHelper.retrieveActiveRoute(), this._appShell, this._pageShell, this._styleShell, this._document);
     }
 
     public static init(): void {
         const currentRoute = RouterHelper.retrieveActiveRoute();
-
-        dom.addContentToPage(currentRoute);
+        // dom.addContentToPage(currentRoute);
     }
 }

@@ -1,10 +1,15 @@
-import {dom} from "../core/dom";
 import {ProgressBar} from "./progress-bar";
+import {ShellElement} from "../helpers/shell-element";
+import {DocumentWrapper} from "../helpers/document-wrapper";
 
 export class ComponentInitialiser {
     private readonly _progressBarElement: HTMLElement;
+    private readonly _appShell: ShellElement;
+    private readonly _document: DocumentWrapper;
 
-    constructor() {
+    constructor(appShell: ShellElement, document: DocumentWrapper) {
+        this._appShell = appShell;
+        this._document = document;
         this._progressBarElement = this.createComponent(ProgressBar, 'progress-bar', 'footer');
         this.addComponentToPage(this._progressBarElement, "afterend");
     }
@@ -12,10 +17,10 @@ export class ComponentInitialiser {
     private createComponent(component: any, elementName: string, htmlElementName: string): HTMLElement {
         customElements.define(elementName, component, {extends: htmlElementName});
 
-        return document.createElement(htmlElementName, { is: elementName });
+        return this._document.createElement(htmlElementName, { is: elementName });
     }
 
     private addComponentToPage(component: HTMLElement, position: InsertPosition) {
-        dom.addComponentToPage(component, position);
+        this._appShell.addComponent(component, position);
     }
 }

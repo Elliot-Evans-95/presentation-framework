@@ -27,4 +27,8 @@ export class ShellElement {
         return new Promise(resolve => this._HTMLElement.addEventListener(listener, () => resolve()));
     }
 
+    addComponent(component: HTMLElement, insertPosition?: InsertPosition) {
+        this._HTMLElement.insertAdjacentElement(insertPosition, component);
+    }
+
 }
