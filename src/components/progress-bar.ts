@@ -13,7 +13,7 @@ export class ProgressBar extends HTMLElement {
         super();
 
         this._progressBarMaxPercentage = 100;
-        this._percentagePerStep = (100 / routes.length) || 0;
+        this._percentagePerStep = 100 / (routes.length - 1) || 0;
         this._currentPercentage = 0;
 
         this.setAttribute('id', 'progressBar');
