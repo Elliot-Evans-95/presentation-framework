@@ -25,7 +25,7 @@ export class Slide implements Dom {
         this.add(route);
     }
 
-    public remove(): void {
+    remove(): void {
         while (this._appShell.element.firstChild) {
             this._appShell.element.removeChild(this._appShell.element.firstChild);
         }
@@ -33,7 +33,7 @@ export class Slide implements Dom {
         messageBus.publish(Messages.CONTENT_REMOVED, this._appShell);
     }
 
-    public add(route: Route): void {
+    add(route: Route): void {
         this._document.title = route.routeName;
         this._pageShell.innerHTML = route.routeHTML;
         this._styleShell.style = route.routeStyle;

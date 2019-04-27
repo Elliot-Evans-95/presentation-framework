@@ -3,13 +3,17 @@ export class Mediator {
     // publish (name: string, data: any): void;
 }
 
+export interface Subscription {
+    unsubscribe: () => void;
+}
+
 export class Bus implements Mediator {
-    public subscriptions = {};
+    subscriptions = {};
     private _index: number = 0;
 
     constructor() {}
 
-    public subscribe(eventType, callback): any {
+    subscribe(eventType, callback): Subscription {
         const id = this.getIdGenerator();
 
         if(!this.subscriptions[eventType])
@@ -25,7 +29,7 @@ export class Bus implements Mediator {
         }
     }
 
-    public publish(eventType, arg): void {
+    publish(eventType, arg): void {
         if(!this.subscriptions[eventType]) return;
 
         Object
@@ -33,7 +37,7 @@ export class Bus implements Mediator {
             .forEach(key => this.subscriptions[eventType][key](arg))
     }
 
-    public getIdGenerator() {
+    getIdGenerator(): number {
         if (this._index > 0) {
             this._index =+ this._index;
 

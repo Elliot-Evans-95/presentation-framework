@@ -2,11 +2,11 @@ import {Route} from "../../types/types";
 import {RouterTransformer} from "./router-transformer";
 
 export abstract class RouterHelper {
-    public static retrieveActiveRoute(): Route {
+    static retrieveActiveRoute(): Route {
         return RouterTransformer.retrieveCurrentRouter().find((route) => route.isActive);
     }
 
-    public static updateHistoryPushState(): void {
+    static updateHistoryPushState(): void {
         window.history.pushState(
             null,
             `/${RouterHelper.retrieveActiveRoute()}`,

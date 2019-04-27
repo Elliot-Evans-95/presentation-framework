@@ -8,7 +8,7 @@ export class Router {
         this._routerState = userRoutes;
     }
 
-    public get state(): Array<Route> {
+    get state(): Array<Route> {
         return this._routerState;
     }
 

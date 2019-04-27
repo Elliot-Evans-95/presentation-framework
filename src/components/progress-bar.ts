@@ -3,7 +3,7 @@ import {componentBus} from "../core/mediator/component-bus";
 import {ComponentEvents, Direction} from "../types/types";
 
 export class ProgressBar extends HTMLElement {
-    public progress: HTMLDivElement;
+    progress: HTMLDivElement;
 
     private readonly _progressBarMaxPercentage: number;
     private readonly _percentagePerStep: number;
@@ -13,7 +13,7 @@ export class ProgressBar extends HTMLElement {
         super();
 
         this._progressBarMaxPercentage = 100;
-        this._percentagePerStep = 100 / (routes.length - 1) || 0;
+        this._percentagePerStep = 100 / (routes.length - 1);
         this._currentPercentage = 0;
 
         this.setAttribute('id', 'progressBar');

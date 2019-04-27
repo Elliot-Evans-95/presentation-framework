@@ -5,7 +5,7 @@ import {componentBus} from "../core/mediator/component-bus";
 
 export abstract class PresentationController {
 
-    public static setNewRoute(direction: Direction): Array<Route> {
+    static setNewRoute(direction: Direction): Array<Route> {
         const currentRoute = RouterHelper.retrieveActiveRoute();
         const currentRouteIndex = currentRoute.id - 1;
         const routerStateSnapshot = RouterTransformer.retrieveCurrentRouter();
