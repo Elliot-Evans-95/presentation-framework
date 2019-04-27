@@ -8,9 +8,9 @@ import {routes} from "../user/routes";
 import {Slide} from "./slide";
 import {RouterHelper} from "./router/router-helper";
 import {ComponentInitialiser} from "../components/component.initialiser";
-import {messageBus} from "./mediator/message-bus";
 import {PresentationController} from "../visitor/presentation.controller";
 import {KeyListener} from "./keys";
+import {Bus} from "./mediator/bus";
 
 export class Presentation {
     private readonly _appShell = new ShellElement(Names.SHELL);
@@ -18,25 +18,23 @@ export class Presentation {
     private readonly _styleShell = new NodeElement(Names.STYLES);
     private readonly _document = new DocumentWrapper(document);
     private readonly _animation = new Animation(this._pageShell);
+    private readonly _messageEvents = new Bus();
 
     constructor() {
         new Router(routes);
-        new Slide(RouterHelper.retrieveActiveRoute(), this._appShell, this._pageShell, this._styleShell, this._document);
+        new Slide(RouterHelper.retrieveActiveRoute(), this._appShell, this._pageShell, this._styleShell, this._document, this._messageEvents);
         new ComponentInitialiser(this._appShell, this._document);
-        new KeyListener();
+        new KeyListener(this._messageEvents);
 
-        messageBus.subscribe(Messages.SET_PAGE, (direction) => this.setPage(direction));
+        this._messageEvents.subscribe(Messages.SET_PAGE, (direction) => this.setPage(direction));
     }
 
     setPage(direction: Direction): void {
         new Router(PresentationController.setNewRoute(direction));
+        new Slide(RouterHelper.retrieveActiveRoute(), this._appShell, this._pageShell, this._styleShell, this._document, this._messageEvents);
+
         RouterHelper.updateHistoryPushState();
-
-        new Slide(RouterHelper.retrieveActiveRoute(), this._appShell, this._pageShell, this._styleShell, this._document);
-
         this._animation.triggerPageAnimation();
-
-        messageBus.publish(Messages.PAGE_CHANGED, null);
     }
 
 }

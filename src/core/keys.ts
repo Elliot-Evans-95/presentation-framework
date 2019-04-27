@@ -1,15 +1,19 @@
-import {messageBus} from "./mediator/message-bus";
 import {Direction, Messages} from "../types/types";
+import {Bus} from "./mediator/bus";
 
 export class KeyListener {
-    constructor() {
+    private readonly _messageEvents: Bus;
+
+    constructor(messageEvents: Bus) {
+        this._messageEvents = messageEvents;
+
         document.addEventListener("keydown", (event: KeyboardEvent) => {
             switch (event.key) {
                 case "ArrowRight":
-                    messageBus.publish(Messages.SET_PAGE, Direction.NEXT);
+                    this._messageEvents.publish(Messages.SET_PAGE, Direction.NEXT);
                     break;
                 case "ArrowLeft":
-                    messageBus.publish(Messages.SET_PAGE, Direction.PREVIOUS);
+                    this._messageEvents.publish(Messages.SET_PAGE, Direction.PREVIOUS);
                     break;
             }
         });

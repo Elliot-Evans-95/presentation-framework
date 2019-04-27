@@ -3,6 +3,7 @@ import {messageBus} from "./mediator/message-bus";
 import {ShellElement} from "../helpers/shell-element";
 import {NodeElement} from "../helpers/node-element";
 import {DocumentWrapper} from "../helpers/document-wrapper";
+import {Bus} from "./mediator/bus";
 
 export interface Dom {
     add: (content: any) => void;
@@ -14,12 +15,19 @@ export class Slide implements Dom {
     private readonly _pageShell;
     private readonly _styleShell;
     private readonly _document;
+    private readonly _messageEvents: Bus;
 
-    constructor(route: Route, appShell: ShellElement, pageShell: ShellElement, styleShell: NodeElement, document: DocumentWrapper) {
+    constructor(route: Route,
+                appShell: ShellElement,
+                pageShell: ShellElement,
+                styleShell: NodeElement,
+                document: DocumentWrapper,
+                messageEvents: Bus) {
         this._appShell = appShell;
         this._pageShell = pageShell;
         this._styleShell = styleShell;
         this._document = document;
+        this._messageEvents = messageEvents;
 
         this.remove();
         this.add(route);
@@ -30,7 +38,7 @@ export class Slide implements Dom {
             this._appShell.element.removeChild(this._appShell.element.firstChild);
         }
 
-        messageBus.publish(Messages.CONTENT_REMOVED, this._appShell);
+        this._messageEvents.publish(Messages.CONTENT_REMOVED, this._appShell);
     }
 
     add(route: Route): void {
@@ -41,7 +49,7 @@ export class Slide implements Dom {
         this._appShell.element.appendChild(this._pageShell.element);
         this._appShell.element.appendChild(this._styleShell.element);
 
-        messageBus.publish(Messages.CONTENT_ADDED, this._appShell);
+        this._messageEvents.publish(Messages.CONTENT_ADDED, this._appShell);
     };
 
 }
