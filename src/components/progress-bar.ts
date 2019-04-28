@@ -50,12 +50,8 @@ export class ProgressBar extends HTMLElement {
         return ['movement'];
     }
 
-    connectedCallback(): void {
-        // this._messageEvents.subscribe(ComponentEvents.DIRECTION, event => this.retrieveDirection(event));
-    }
-
-    retrieveDirection(event: Direction): void {
-        this.setPercentage(event)
+    attributeChangedCallback(name, oldDirection: Direction, newDirection: Direction): void {
+        this.setPercentage(newDirection);
     }
 
     setProgress(width): void {
@@ -63,17 +59,21 @@ export class ProgressBar extends HTMLElement {
     }
 
     setPercentage(direction: Direction): void {
-        if(direction === Direction.PREVIOUS) {
-            if(this._currentPercentage <= 0) return;
+        switch (direction) {
+            case Direction.PREVIOUS:
+                if(this._currentPercentage <= 0) return;
 
-            this._currentPercentage = this._currentPercentage - this._percentagePerStep;
-            this.setProgress(this._currentPercentage);
-        }
-        if(direction === Direction.NEXT) {
-            if(this._currentPercentage >= this._progressBarMaxPercentage) return;
+                this._currentPercentage = this._currentPercentage - this._percentagePerStep;
+                this.setProgress(this._currentPercentage);
 
-            this._currentPercentage = this._currentPercentage + this._percentagePerStep;
-            this.setProgress(this._currentPercentage);
+                break;
+            case Direction.NEXT:
+                if(this._currentPercentage >= this._progressBarMaxPercentage) return;
+
+                this._currentPercentage = this._currentPercentage + this._percentagePerStep;
+                this.setProgress(this._currentPercentage);
+
+                break;
         }
     }
 

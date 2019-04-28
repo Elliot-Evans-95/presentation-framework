@@ -23,7 +23,7 @@ export class Presentation {
 
     constructor(userRoutes: Array<Route>) {
         this._router = new Router(userRoutes);
-        new ComponentInitialiser(this._appShell, this._document);
+        new ComponentInitialiser(this._appShell, this._document, this._messageEvents);
         new KeyListener(this._messageEvents);
         this.generateNewSlide();
         this._messageEvents.subscribe(Messages.SET_PAGE, (direction) => this.setPage(direction));
