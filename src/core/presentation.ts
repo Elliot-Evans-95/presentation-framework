@@ -18,7 +18,8 @@ export class Presentation {
     private readonly _document = new DocumentWrapper(document);
     private readonly _animation = new Animation(this._pageShell);
     private readonly _messageEvents = new Bus();
-    private readonly _router: Router;
+
+    private _router: Router;
 
     constructor(userRoutes: Array<Route>) {
         this._router = new Router(userRoutes);
@@ -29,7 +30,7 @@ export class Presentation {
     }
 
     setPage(direction: Direction): void {
-        RouterController.setNewActiveRoute(this._router, direction);
+        this._router = RouterController.setActiveRoute(this._router, direction, this._messageEvents);
         RouterHelper.updateHistoryPushState(this._router);
         this.generateNewSlide();
         this._animation.triggerPageAnimation();

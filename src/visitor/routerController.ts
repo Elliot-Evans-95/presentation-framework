@@ -1,13 +1,12 @@
 import {ComponentEvents, Direction} from "../types/types";
 import {RouterHelper} from "../core/router/router-helper";
-import {componentBus} from "../core/mediator/component-bus";
 import {Router} from "../core/router/router";
+import {Bus} from "../core/mediator/bus";
 
 export class RouterController {
 
-    static setNewActiveRoute(router: Router, direction: Direction) {
-        const currentRoute = RouterHelper.retrieveActiveRoute(router);
-        const currentRouteIndex = currentRoute.id - 1;
+    static setActiveRoute(router: Router, direction: Direction, messageBus: Bus): Router {
+        const currentRouteIndex = RouterHelper.retrieveActiveRoute(router).id - 1;
 
         switch (direction) {
             case Direction.NEXT:
@@ -16,7 +15,7 @@ export class RouterController {
                 router.state[currentRouteIndex].isActive = false;
                 router.state[currentRouteIndex + 1].isActive = true;
 
-                componentBus.publish(ComponentEvents.DIRECTION, Direction.NEXT);
+                messageBus.publish(ComponentEvents.DIRECTION, Direction.NEXT);
 
                 break;
             case Direction.PREVIOUS:
@@ -25,7 +24,7 @@ export class RouterController {
                 router.state[currentRouteIndex].isActive = false;
                 router.state[currentRouteIndex - 1].isActive = true;
 
-                componentBus.publish(ComponentEvents.DIRECTION, Direction.PREVIOUS);
+                messageBus.publish(ComponentEvents.DIRECTION, Direction.PREVIOUS);
 
                 break;
             default:
@@ -34,6 +33,7 @@ export class RouterController {
                 break;
         }
 
+        return new Router(router.state);
     }
 
 }

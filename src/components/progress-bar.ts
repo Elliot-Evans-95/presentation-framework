@@ -1,12 +1,12 @@
 import {routes} from "../user/routes";
-import {componentBus} from "../core/mediator/component-bus";
-import {ComponentEvents, Direction} from "../types/types";
+import {Direction} from "../types/types";
 
 export class ProgressBar extends HTMLElement {
     progress: HTMLDivElement;
 
     private readonly _progressBarMaxPercentage: number;
     private readonly _percentagePerStep: number;
+
     private _currentPercentage: number;
 
     constructor() {
@@ -46,23 +46,23 @@ export class ProgressBar extends HTMLElement {
         shadow.appendChild(this.progress);
     }
 
-    static get observedAttributes() {
+    static get observedAttributes(): Array<string> {
         return ['movement'];
     }
 
-    connectedCallback() {
-        componentBus.subscribe(ComponentEvents.DIRECTION, event => this.retrieveDirection(event));
+    connectedCallback(): void {
+        // this._messageEvents.subscribe(ComponentEvents.DIRECTION, event => this.retrieveDirection(event));
     }
 
-    retrieveDirection(event: Direction) {
+    retrieveDirection(event: Direction): void {
         this.setPercentage(event)
     }
 
-    setProgress(width) {
+    setProgress(width): void {
         this.progress.setAttribute('style', `max-width: ${width}%`);
     }
 
-    setPercentage(direction: Direction) {
+    setPercentage(direction: Direction): void {
         if(direction === Direction.PREVIOUS) {
             if(this._currentPercentage <= 0) return;
 

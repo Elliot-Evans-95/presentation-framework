@@ -1,5 +1,4 @@
 import {Messages, Route} from "../types/types";
-import {messageBus} from "./mediator/message-bus";
 import {ShellElement} from "../helpers/shell-element";
 import {NodeElement} from "../helpers/node-element";
 import {DocumentWrapper} from "../helpers/document-wrapper";

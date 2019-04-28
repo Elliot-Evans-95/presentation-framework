@@ -16,7 +16,6 @@ export class ComponentInitialiser {
 
     private createComponent(component: any, elementName: string, htmlElementName: string): HTMLElement {
         customElements.define(elementName, component, {extends: htmlElementName});
-
         return this._document.createElement(htmlElementName, { is: elementName });
     }
 
