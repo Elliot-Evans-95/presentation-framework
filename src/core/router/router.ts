@@ -1,5 +1,4 @@
 import {Route} from "../../types/types";
-import {routes} from "../../user/routes";
 
 export class Router {
     private readonly _routerState: Array<Route>;
@@ -13,5 +12,3 @@ export class Router {
     }
 
 }
-
-export const router = new Router(routes);

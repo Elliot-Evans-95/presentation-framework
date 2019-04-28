@@ -1,16 +1,16 @@
 import {Route} from "../../types/types";
-import {RouterTransformer} from "./router-transformer";
+import {Router} from "./router";
 
 export abstract class RouterHelper {
-    static retrieveActiveRoute(): Route {
-        return RouterTransformer.retrieveCurrentRouter().find((route) => route.isActive);
+    static retrieveActiveRoute(router: Router): Route {
+        return router.state.find((route) => route.isActive);
     }
 
-    static updateHistoryPushState(): void {
+    static updateHistoryPushState(router: Router): void {
         window.history.pushState(
             null,
-            `/${RouterHelper.retrieveActiveRoute()}`,
-            window.location.origin + `/${RouterHelper.retrieveActiveRoute().routeName}`
+            `/${RouterHelper.retrieveActiveRoute(router)}`,
+            window.location.origin + `/${RouterHelper.retrieveActiveRoute(router).routeName}`
         );
     }
 }

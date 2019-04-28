@@ -1,4 +1,4 @@
-import {PresentationController} from "./presentation.controller";
+import {RouterController} from "./routerController";
 import {messageBus} from "../core/mediator/message-bus";
 import {Direction, Route} from "../types/types";
 import {RouterHelper} from "../core/router/router-helper";
@@ -30,33 +30,33 @@ const fakeRoutes: Readonly<Array<Route>> = [
     }
 ];
 
-describe('When the "init" is called on the PresentationController', () => {
+describe('When the "init" is called on the RouterController', () => {
     test('Then publish message is fired', () => {
         const publishSpy = spyOn(messageBus, 'publish');
 
-        PresentationController.init();
+        RouterController.init();
 
         expect(publishSpy).toHaveBeenCalled();
     });
 });
 
-describe('When the "rebuildDom" is called on the PresentationController', () => {
+describe('When the "rebuildDom" is called on the RouterController', () => {
     test('Then publish message is fired', () => {
         const publishSpy = spyOn(messageBus, 'publish');
 
-        PresentationController.rebuildDom();
+        RouterController.rebuildDom();
 
         expect(publishSpy).toHaveBeenCalled();
     });
 });
 
-describe('When the "goToPage" is called on the PresentationController', () => {
-    beforeAll( () => spyOn(PresentationController, 'setNewRoute').and.returnValue(fakeRoutes));
+describe('When the "goToPage" is called on the RouterController', () => {
+    beforeAll( () => spyOn(RouterController, 'setNewRoute').and.returnValue(fakeRoutes));
 
     test('Then "publish" is fired', () => {
         const publishSpy = spyOn(messageBus, 'publish');
 
-        PresentationController.goToPage(Direction.NEXT);
+        RouterController.goToPage(Direction.NEXT);
 
         expect(publishSpy).toHaveBeenCalled();
     });
@@ -65,15 +65,15 @@ describe('When the "goToPage" is called on the PresentationController', () => {
     test('Then "updateHistoryPushState" is fired', () => {
         const updateHistoryStateSpy = spyOn(RouterHelper, 'updateHistoryPushState');
 
-        PresentationController.goToPage(Direction.NEXT);
+        RouterController.goToPage(Direction.NEXT);
 
         expect(updateHistoryStateSpy).toHaveBeenCalled();
     });
 
     test('Then "rebuildDom" is fired', () => {
-        const rebuildDomSpy = spyOn(PresentationController, 'rebuildDom');
+        const rebuildDomSpy = spyOn(RouterController, 'rebuildDom');
 
-        PresentationController.goToPage(Direction.NEXT);
+        RouterController.goToPage(Direction.NEXT);
 
         expect(rebuildDomSpy).toHaveBeenCalled();
     });
@@ -81,13 +81,13 @@ describe('When the "goToPage" is called on the PresentationController', () => {
     test('Then "rebuildDom" is fired', () => {
         const generateNewRouterSpy = spyOn(RouterTransformer, 'generateNewRouter');
 
-        PresentationController.goToPage(Direction.NEXT);
+        RouterController.goToPage(Direction.NEXT);
 
         expect(generateNewRouterSpy).toHaveBeenCalled();
     });
 });
 
-describe('When the "setNewRoute" is called on the PresentationController', () => {
+describe('When the "setNewRoute" is called on the RouterController', () => {
     let router: Router;
 
     beforeAll( () => {
@@ -135,7 +135,7 @@ describe('When the "setNewRoute" is called on the PresentationController', () =>
             }
         ];
 
-        PresentationController.setNewRoute(Direction.NEXT);
+        RouterController.setNewRoute(Direction.NEXT);
 
         expect(router.state).toEqual(fakeChangedActiveRoutes);
     });
