@@ -1,6 +1,5 @@
 import {RouterHelper} from "./router-helper";
 import {Route} from "../../types/types";
-import {RouterTransformer} from "./router-transformer";
 import {Router} from "./router";
 
 const fakeActiveRoute: Route = {
@@ -14,7 +13,6 @@ const fakeActiveRoute: Route = {
         `,
     isActive: true
 };
-
 const fakeRoutes: Readonly<Array<Route>> = [
     {
         id: 1,
@@ -40,32 +38,25 @@ const fakeRoutes: Readonly<Array<Route>> = [
     }
 ];
 
-let router: Router;
-
-beforeAll(() => router = new Router(fakeRoutes));
-
 describe('When a "updateHistoryPushState" is called', () => {
     test('Then the history pushState is fired', () => {
         const historySpy = spyOn(history, 'pushState');
 
-        RouterHelper.updateHistoryPushState();
+        RouterHelper.updateHistoryPushState(new Router(fakeRoutes));
 
         expect(historySpy).toHaveBeenCalled();
     });
 
     test('Then the history pushState is fired with the active route', () => {
         const historySpy = spyOn(history, 'pushState');
-        RouterHelper.updateHistoryPushState();
+        RouterHelper.updateHistoryPushState(new Router(fakeRoutes));
 
         expect(historySpy).toHaveBeenCalledWith(null, `/${fakeActiveRoute}`,  `http://localhost/${fakeActiveRoute.routeName}`);
     });
 });
 
 describe('When "retrieveActiveRoute" is called', () => {
-    beforeAll(() => spyOn(RouterTransformer, 'retrieveCurrentRouter').and.returnValue(router.state));
-
     test('Then the active route is returned', () => {
-        expect(RouterHelper.retrieveActiveRoute()).toEqual(fakeActiveRoute);
+        expect(RouterHelper.retrieveActiveRoute(new Router(fakeRoutes))).toEqual(fakeActiveRoute);
     });
-
 });

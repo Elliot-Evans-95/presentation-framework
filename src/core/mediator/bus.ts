@@ -1,12 +1,8 @@
-export interface Mediator {
-    subscribe (name: string, callback: () => any): Subscription;
-    publish (name: string, data: any): void;
-}
+import {Mediator, Subscription} from "./bus.type";
 
-export interface Subscription {
-    unsubscribe: () => void;
-}
-
+/*
+    @ Mediator Design Pattern
+ */
 export class Bus implements Mediator {
     subscriptions = {};
     private _index: number = 0;

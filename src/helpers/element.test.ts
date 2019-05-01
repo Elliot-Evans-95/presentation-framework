@@ -1,4 +1,6 @@
-import {DocumentWrapper, NodeElement, ShellElement} from "./element";
+import {ShellElement} from "./shell-element";
+import {NodeElement} from "./node-element";
+import {DocumentWrapper} from "./document-wrapper";
 
 describe('Given a new instance of "ShellElement" is made', () => {
     let mockShellElement: ShellElement;

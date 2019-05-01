@@ -1,11 +1,22 @@
 import {Slide} from "./slide";
 import {Names, Route} from "../types/types";
-import {messageBus} from "./mediator/message-bus";
+import {RouterHelper} from "./router/router-helper";
+import {ShellElement} from "../helpers/shell-element";
+import {NodeElement} from "../helpers/node-element";
+import {DocumentWrapper} from "../helpers/document-wrapper";
+import {Bus} from "./mediator/bus";
+import {Router} from "./router/router";
+import {fakeRoutes} from "./router/router.test";
 
 describe('Given a new version of the Slide class has been made', () => {
     let dom: Slide;
+    const appShell = new ShellElement(Names.SHELL);
+    const pageShell = new ShellElement(Names.PAGE);
+    const styleShell = new NodeElement(Names.STYLES);
+    const documentWrapper = new DocumentWrapper(document);
+    const messageEvents = new Bus();
 
-    beforeAll( () => dom = new Slide());
+    beforeAll( () => dom = new Slide(RouterHelper.retrieveActiveRoute(new Router(fakeRoutes)), appShell, pageShell, styleShell, documentWrapper, messageEvents));
 
     test('dom is constructed', () => expect(dom).not.toEqual(null));
 
@@ -41,7 +52,7 @@ describe('Given a new version of the Slide class has been made', () => {
         test('then the "pageShell" has content', () => {
             dom.add(fakeRoute);
 
-            expect((dom as any)._pageShell.HTMLElement.innerHTML).toEqual(fakeRoute.routeHTML);
+            expect((dom as any)._pageShell.element.innerHTML).toEqual(fakeRoute.routeHTML);
         });
 
         test('then the "appShell" has content', () => {
@@ -56,10 +67,18 @@ describe('Given a new version of the Slide class has been made', () => {
             expect((dom as any)._styleShell.element.textContent).toEqual('#app-shell {background: aqua;}');
         });
 
-        test('then a message is published', () => {
-            const publishSpy = spyOn(messageBus, 'publish');
+        test('then a message is published when adding content to the dom', () => {
+            const publishSpy = spyOn(messageEvents, 'publish');
 
             dom.add(fakeRoute);
+
+            expect(publishSpy).toHaveBeenCalled();
+        });
+
+        test('then a message is published when removing content to the dom', () => {
+            const publishSpy = spyOn(messageEvents, 'publish');
+
+            dom.remove();
 
             expect(publishSpy).toHaveBeenCalled();
         });

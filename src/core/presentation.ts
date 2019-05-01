@@ -29,6 +29,9 @@ export class Presentation {
         this._messageEvents.subscribe(Messages.SET_PAGE, (direction) => this.setPage(direction));
     }
 
+    /*
+        @ Facade Design Pattern
+     */
     setPage(direction: Direction): void {
         this._router = RouterController.setActiveRoute(this._router, direction, this._messageEvents);
         RouterHelper.updateHistoryPushState(this._router);

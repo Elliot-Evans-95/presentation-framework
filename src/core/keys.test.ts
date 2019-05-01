@@ -1,47 +1,38 @@
-import {Direction} from "../types/types";
-import {RouterController} from "../visitor/routerController";
+import {KeyListener} from "./keys";
+import {Bus} from "./mediator/bus";
+import Spy = jasmine.Spy;
 
-const map: any = {};
+const messageEvents = new Bus();
+let spyPresentationController: Spy;
 
-beforeAll( () => {
-    const mockDocument = {
-        addEventListener: jest.fn((event, callback) => {
-            map[event] = callback;
-        }),
-    };
-
-    mockDocument.addEventListener("keydown", (event: KeyboardEvent) => {
-        switch (event.key) {
-            case "ArrowRight":
-                RouterController.goToPage(Direction.NEXT);
-                break;
-            case "ArrowLeft":
-                RouterController.goToPage(Direction.PREVIOUS);
-                break;
-        }
-    });
+beforeEach( () => {
+    new KeyListener(messageEvents);
+    spyPresentationController = spyOn(messageEvents, "publish");
 });
 
 test('When the user presses the arrow right button then it calls the goToPage on the RouterController', () => {
-    const spyPresentationController = spyOn(RouterController, "goToPage");
-
-    map.keydown({ key: 'ArrowRight' });
+    const event = new KeyboardEvent("keydown",{
+        "key": "ArrowRight"
+    });
+    document.dispatchEvent(event);
 
     expect(spyPresentationController).toHaveBeenCalled();
 });
 
 test('When the user presses the arrow left button then it calls the goToPage on the RouterController', () => {
-    const spyPresentationController = spyOn(RouterController, "goToPage");
-
-    map.keydown({ key: 'ArrowLeft' });
+    const event = new KeyboardEvent("keydown",{
+        "key": "ArrowLeft"
+    });
+    document.dispatchEvent(event);
 
     expect(spyPresentationController).toHaveBeenCalled();
 });
 
 test('When the user presses the arrow down button then it calls the goToPage on the RouterController', () => {
-    const spyPresentationController = spyOn(RouterController, "goToPage");
-
-    map.keydown({ key: 'ArrowDown' });
+    const event = new KeyboardEvent("keydown",{
+        "key": "ArrowDown"
+    });
+    document.dispatchEvent(event);
 
     expect(spyPresentationController).not.toHaveBeenCalled();
 });
