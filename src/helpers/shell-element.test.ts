@@ -1,6 +1,4 @@
 import {ShellElement} from "./shell-element";
-import {NodeElement} from "./node-element";
-import {DocumentWrapper} from "./document-wrapper";
 
 describe('Given a new instance of "ShellElement" is made', () => {
     let mockShellElement: ShellElement;
@@ -43,36 +41,6 @@ describe('Given a new instance of "ShellElement" is made', () => {
         mockShellElement.element.click();
 
         expect(eventListenerSpy).toHaveBeenCalled();
-    });
-
-});
-
-describe('Given a new instance of "NodeElement" is made', () => {
-    let mockNodeElement: NodeElement;
-
-    beforeAll(() => mockNodeElement = new NodeElement('div'));
-
-    test('Then the element can be returned', () => {
-        expect(mockNodeElement.element).toEqual(document.createElement('div'));
-    });
-
-    test('Then the style can be set', () => {
-        mockNodeElement.style = '.test { background: red }';
-
-        expect(mockNodeElement.element.textContent).toEqual('.test { background: red }');
-    });
-
-});
-
-describe('Given a new instance of "DocumentWrapper" is made', () => {
-    let mockDocumentWrapper: DocumentWrapper;
-
-    beforeAll(() => mockDocumentWrapper = new DocumentWrapper(document));
-
-    test('Then the title can be set', () => {
-        mockDocumentWrapper.title = 'test title';
-
-        expect( (mockDocumentWrapper as any).document.title).toEqual('test title');
     });
 
 });
