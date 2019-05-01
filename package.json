@@ -14,6 +14,7 @@
     "@babel/plugin-proposal-object-rest-spread": "^7.3.1",
     "@types/jest": "^24.0.11",
     "jest": "^24.3.1",
+    "jsdom-wc": "^11.0.0-alpha-1",
     "parcel-bundler": "^1.11.0",
     "ts-jest": "^24.0.0",
     "typescript": "^3.3.3333"

@@ -1,6 +1,10 @@
 import {routes} from "../user/routes";
 import {Direction} from "../types/types";
 
+
+/*
+    @ Strategy Design Pattern
+ */
 export class ProgressBar extends HTMLElement {
     progress: HTMLDivElement;
 

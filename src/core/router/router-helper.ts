@@ -1,6 +1,9 @@
 import {Route} from "../../types/types";
 import {Router} from "./router";
 
+/*
+    @ Proxy Design Pattern
+ */
 export abstract class RouterHelper {
     static retrieveActiveRoute(router: Router): Route {
         return router.state.find((route) => route.isActive);

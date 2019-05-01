@@ -1,3 +1,4 @@
+// TODO create an element interface
 export class NodeElement {
     private readonly nodeElement: HTMLElement;
 

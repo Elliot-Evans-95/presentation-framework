@@ -1,3 +1,5 @@
+
+// TODO create an element interface
 export class ShellElement {
     private readonly _HTMLElement: HTMLElement;
 
@@ -28,6 +30,8 @@ export class ShellElement {
     }
 
     addComponent(component: HTMLElement, insertPosition?: InsertPosition) {
+        if(!this._HTMLElement.insertAdjacentElement) return;
+
         this._HTMLElement.insertAdjacentElement(insertPosition, component);
     }
 

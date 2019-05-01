@@ -7,10 +7,13 @@ import {Router} from "./router/router";
 import {Slide} from "./slide";
 import {RouterHelper} from "./router/router-helper";
 import {ComponentInitialiser} from "../components/component.initialiser";
-import {RouterController} from "../visitor/routerController";
 import {KeyListener} from "./keys";
 import {Bus} from "./mediator/bus";
+import {RouterController} from "../visitor/router.controller";
 
+/*
+    @ Mediator Design Pattern
+ */
 export class Presentation {
     private readonly _appShell = new ShellElement(Names.SHELL);
     private readonly _pageShell = new ShellElement(Names.PAGE);

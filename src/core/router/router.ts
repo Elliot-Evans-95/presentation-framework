@@ -1,5 +1,8 @@
 import {Route} from "../../types/types";
 
+/*
+    @ State Design Pattern
+ */
 export class Router {
     private readonly _routerState: Array<Route>;
 
