@@ -1,5 +1,5 @@
-import {Route} from "../../types/types";
-import {Router} from "./router";
+import {Router} from "../router";
+import {Route} from "../router.type";
 
 /*
     @ Proxy Design Pattern

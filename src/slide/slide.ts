@@ -1,8 +1,9 @@
-import {Messages, Route} from "../types/types";
-import {ShellElement} from "../helpers/shell-element";
-import {NodeElement} from "../helpers/node-element";
-import {DocumentWrapper} from "../helpers/document-wrapper";
-import {Bus} from "./mediator/bus";
+import {ShellElement} from "../shellElement/shell-element";
+import {NodeElement} from "../nodeElement/node-element";
+import {DocumentWrapper} from "../documentWrapper/document-wrapper";
+import {Route} from "../router/router.type";
+import {Messages} from "../shared/types/types";
+import {Bus} from "../messages/bus";
 
 export interface Dom {
     add: (content: any) => void;

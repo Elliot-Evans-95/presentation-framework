@@ -1,5 +1,5 @@
 import {KeyListener} from "./keys";
-import {Bus} from "./mediator/bus";
+import {Bus} from "../messages/bus";
 import Spy = jasmine.Spy;
 
 const messageEvents = new Bus();

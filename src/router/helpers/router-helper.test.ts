@@ -1,6 +1,6 @@
 import {RouterHelper} from "./router-helper";
-import {Route} from "../../types/types";
-import {Router} from "./router";
+import {Router} from "../router";
+import {Route} from "../router.type";
 
 const fakeActiveRoute: Route = {
     id: 1,

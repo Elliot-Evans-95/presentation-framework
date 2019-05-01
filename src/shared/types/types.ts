@@ -1,26 +1,11 @@
-export interface Route {
-    id: number,
-    routeName: string,
-    routeHTML: string,
-    routeStyle: string,
-    isActive: boolean,
-}
-
 export enum Direction {
     NEXT = 'next',
     PREVIOUS = 'prev'
 }
 
-export enum Names {
-    STYLES = 'style',
-    SHELL = 'app-shell',
-    PAGE = 'main',
-}
-
 export enum Messages {
     CONTENT_ADDED = '[DOM] Added Content',
     CONTENT_REMOVED = '[DOM] Removed Content',
-    PAGE_CHANGED = '[ROUTER] Page Changed',
     SET_PAGE = '[PRESENTATION] Set Page',
 }
 

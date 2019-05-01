@@ -1,5 +1,5 @@
 import {Router} from "./router";
-import {Route} from "../../types/types";
+import {Route} from "./router.type";
 
 export const fakeRoutes: Readonly<Array<Route>> = [
     {

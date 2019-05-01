@@ -1,5 +1,5 @@
 import {routes} from "../user/routes";
-import {Direction} from "../types/types";
+import {Direction} from "../shared/types/types";
 
 
 /*

@@ -1,7 +1,7 @@
-import {ComponentEvents, Direction} from "../types/types";
-import {RouterHelper} from "../core/router/router-helper";
-import {Router} from "../core/router/router";
-import {Bus} from "../core/mediator/bus";
+import {ComponentEvents, Direction} from "../../shared/types/types";
+import {RouterHelper} from "../helpers/router-helper";
+import {Router} from "../router";
+import {Bus} from "../../messages/bus";
 
 /*
     @ Proxy Design Pattern

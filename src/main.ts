@@ -1,4 +1,4 @@
-import {Presentation} from "./core/presentation";
+import {Presentation} from "./presentation/presentation";
 import {routes} from "./user/routes";
 
 new Presentation(routes);

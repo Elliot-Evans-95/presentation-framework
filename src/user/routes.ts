@@ -1,4 +1,4 @@
-import {Route} from "../types/types";
+import {Route} from "../router/router.type";
 
 export const routes: Readonly<Array<Route>> = [
     {

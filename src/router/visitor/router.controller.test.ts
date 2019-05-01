@@ -1,8 +1,9 @@
-import {Direction, Route} from "../types/types";
-import {Router} from "../core/router/router";
-import {Bus} from "../core/mediator/bus";
-import {fakeRoutes} from "../core/router/router.test";
+import {Router} from "../router";
+import {Bus} from "../../messages/bus";
+import {fakeRoutes} from "../router.test";
 import {RouterController} from "./router.controller";
+import {Direction} from "../../shared/types/types";
+import {Route} from "../router.type";
 
 describe('When the "setNewRoute" is called on the RouterController going forward', () => {
     let router: Router;

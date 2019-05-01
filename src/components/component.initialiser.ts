@@ -1,8 +1,8 @@
 import {ProgressBar} from "./progress-bar";
-import {ShellElement} from "../helpers/shell-element";
-import {DocumentWrapper} from "../helpers/document-wrapper";
-import {ComponentEvents, Direction} from "../types/types";
-import {Bus} from "../core/mediator/bus";
+import {ShellElement} from "../shellElement/shell-element";
+import {DocumentWrapper} from "../documentWrapper/document-wrapper";
+import {ComponentEvents, Direction} from "../shared/types/types";
+import {Bus} from "../messages/bus";
 
 export class ComponentInitialiser {
     private readonly _progressBarElement: HTMLElement;

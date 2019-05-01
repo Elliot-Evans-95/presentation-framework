@@ -1,7 +1,8 @@
 import {Presentation} from "./presentation";
-import {Direction, Names} from "../types/types";
-import {fakeRoutes} from "./router/router.test";
+import {fakeRoutes} from "../router/router.test";
 import {JSDOM} from "jsdom-wc";
+import {Names} from "../slide/dom.type";
+import {Direction} from "../shared/types/types";
 
 const { window } = new JSDOM(`<!DOCTYPE html>`);
 // Add a few things to global so that "customElements" 'works'

@@ -1,4 +1,4 @@
-import { ShellElement } from "../helpers/shell-element";
+import { ShellElement } from "../shellElement/shell-element";
 
 export class Animation {
     private readonly _pageShell: ShellElement;

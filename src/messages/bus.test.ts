@@ -1,4 +1,4 @@
-import {Messages} from "../../types/types";
+import {Messages} from "../shared/types/types";
 import {Bus} from "./bus";
 
 describe('Given a new version of the message bus class has been made', () => {

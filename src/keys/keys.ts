@@ -1,5 +1,5 @@
-import {Direction, Messages} from "../types/types";
-import {Bus} from "./mediator/bus";
+import {Direction, Messages} from "../shared/types/types";
+import {Bus} from "../messages/bus";
 
 export class KeyListener {
     private readonly _messageEvents: Bus;

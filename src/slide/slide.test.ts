@@ -1,12 +1,13 @@
 import {Slide} from "./slide";
-import {Names, Route} from "../types/types";
-import {RouterHelper} from "./router/router-helper";
-import {ShellElement} from "../helpers/shell-element";
-import {NodeElement} from "../helpers/node-element";
-import {DocumentWrapper} from "../helpers/document-wrapper";
-import {Bus} from "./mediator/bus";
-import {Router} from "./router/router";
-import {fakeRoutes} from "./router/router.test";
+import {RouterHelper} from "../router/helpers/router-helper";
+import {ShellElement} from "../shellElement/shell-element";
+import {NodeElement} from "../nodeElement/node-element";
+import {DocumentWrapper} from "../documentWrapper/document-wrapper";
+import {Bus} from "../messages/bus";
+import {Router} from "../router/router";
+import {fakeRoutes} from "../router/router.test";
+import {Names} from "./dom.type";
+import {Route} from "../router/router.type";
 
 describe('Given a new version of the Slide class has been made', () => {
     let dom: Slide;

@@ -1,15 +1,17 @@
-import {ShellElement} from "../helpers/shell-element";
-import {Direction, Messages, Names, Route} from "../types/types";
-import {NodeElement} from "../helpers/node-element";
-import {DocumentWrapper} from "../helpers/document-wrapper";
+import {ShellElement} from "../shellElement/shell-element";
+import {NodeElement} from "../nodeElement/node-element";
+import {DocumentWrapper} from "../documentWrapper/document-wrapper";
 import {Animation} from "../user/animation";
-import {Router} from "./router/router";
-import {Slide} from "./slide";
-import {RouterHelper} from "./router/router-helper";
+import {Router} from "../router/router";
+import {Slide} from "../slide/slide";
+import {RouterHelper} from "../router/helpers/router-helper";
 import {ComponentInitialiser} from "../components/component.initialiser";
-import {KeyListener} from "./keys";
-import {Bus} from "./mediator/bus";
-import {RouterController} from "../visitor/router.controller";
+import {KeyListener} from "../keys/keys";
+import {Bus} from "../messages/bus";
+import {RouterController} from "../router/visitor/router.controller";
+import {Names} from "../slide/dom.type";
+import {Route} from "../router/router.type";
+import {Direction, Messages} from "../shared/types/types";
 
 /*
     @ Mediator Design Pattern
