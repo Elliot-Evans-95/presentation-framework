@@ -4,7 +4,9 @@ export const routes: Readonly<Array<Route>> = [
     {
         id: 1,
         routeName: 'hello',
-        routeHTML: '<p>Design Patterns in Javascript - a Case Study</p>',
+        routeHTML: `
+            <p>Design Patterns in Javascript - a Case Study</p>
+        `,
         routeStyle: `
             #app-shell { 
                 //background: aqua;
@@ -16,8 +18,8 @@ export const routes: Readonly<Array<Route>> = [
         id: 2,
         routeName: 'aboutMe',
         routeHTML: `
-        <h5>Web app developer</h5>
-        <p>Codeweavers</p>
+            <h5>Web app developer</h5>
+            <p>Codeweavers</p>
         `,
         routeStyle: `
             #app-shell { 
@@ -60,7 +62,26 @@ export const routes: Readonly<Array<Route>> = [
     {
         id: 5,
         routeName: 'conceptOfTheProject',
-        routeHTML: '<p>The Spike of the idea</p>',
+        routeHTML: `
+            <p>The Spike of the idea</p>
+            <pre>
+                <code class="code-block language-typescript">
+                /*
+                    @ Strategy Design Pattern
+                 */
+                export class ProgressBar extends HTMLElement {
+                    progress: HTMLDivElement;
+                
+                    private readonly _progressBarMaxPercentage: number;
+                    private readonly _percentagePerStep: number;
+                
+                    private _currentPercentage: number;
+                
+                    constructor() {}
+                }
+                </code>
+            </pre>
+        `,
         routeStyle: `
             #app-shell { 
                 //background: fuchsia;

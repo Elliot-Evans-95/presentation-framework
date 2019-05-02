@@ -9,6 +9,10 @@ export class DocumentWrapper {
         this.document.title = title;
     }
 
+    querySelectorAll(className: string): NodeListOf<any> {
+        return this.document.querySelectorAll(className);
+    }
+
     createElement(htmlElementName: string, options?: { is: string }): HTMLElement {
         return this.document.createElement(htmlElementName, options);
     }

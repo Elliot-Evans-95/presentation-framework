@@ -12,6 +12,7 @@ import {RouterController} from "../router/visitor/router.controller";
 import {Names} from "../slide/dom.type";
 import {Route} from "../router/router.type";
 import {Direction, Messages} from "../shared/types/types";
+import {Highlighter} from "../highlighter/highlighter";
 
 /*
     @ Mediator Design Pattern
@@ -41,6 +42,7 @@ export class Presentation {
         this._router = RouterController.setActiveRoute(this._router, direction, this._messageEvents);
         RouterHelper.updateHistoryPushState(this._router);
         this.generateNewSlide();
+        new Highlighter(this._document);
         this._animation.triggerPageAnimation();
     }
 

@@ -1,5 +1,6 @@
 import {Presentation} from "./presentation";
 import {fakeRoutes} from "../router/router.test";
+// @ts-ignore
 import {JSDOM} from "jsdom-wc";
 import {Names} from "../slide/dom.type";
 import {Direction} from "../shared/types/types";
