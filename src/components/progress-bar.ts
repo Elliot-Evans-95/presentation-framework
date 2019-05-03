@@ -33,7 +33,7 @@ export class ProgressBar extends HTMLElement {
         `
             :host {
                 width: 100vw;
-                background-color: var(--text-heading-color) !important;
+                background-color: var(--progress-bg-color) !important;
                 height: 18px;
             }
             #progress {
