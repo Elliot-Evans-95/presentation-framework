@@ -364,7 +364,7 @@ export const routes: Readonly<Array<Route>> = [
         id: 10,
         routeName: 'conclusion',
         routeHTML: `
-            <h2>Link to framework: <a href="https://github.com/Elliot-Evans-95/presenation-framework">github.com/Elliot-Evans-95/presenation-framework</a></h2>
+            <h2>Link to framework: <a href="https://github.com/Elliot-Evans-95/presenation-framework">github.com/Elliot-Evans-95/presentation-framework</a></h2>
             <h2>Link to website: <a href="https://elliotevans.site">elliotevans.site</a></h2>
         `,
         routeStyle: `
