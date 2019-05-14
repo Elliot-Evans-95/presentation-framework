@@ -1,4 +1,3 @@
-
 /*
     @ State Design Pattern
  */

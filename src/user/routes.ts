@@ -7,11 +7,7 @@ export const routes: Readonly<Array<Route>> = [
         routeHTML: `
             <h1>Design Patterns in Javascript (typescript) - a Case Study</h1>
         `,
-        routeStyle: `
-            #app-shell { 
-                //background: aqua;
-            }
-        `,
+        routeStyle: ``,
         isActive: true
     },
     {
@@ -179,6 +175,55 @@ export const routes: Readonly<Array<Route>> = [
     },
     {
         id: 7,
+        routeName: 'designPattern',
+        routeHTML: `
+            <h1>Design Patterns</h1>
+            
+            <div class="design-pattern-container">
+                <div class="design-pattern-section">
+                    <h2>Types of design patterns:</h2>
+                    <ul>
+                        <li>Behavioural</li>
+                        <li>Structural</li>
+                        <li>Creation</li>
+                    </ul>    
+                </div>
+
+                <div class="design-pattern-section">
+                    <h2>Design patterns that I used:</h2>
+                    <ul>
+                        <li>Meditator</li>
+                        <li>Facade</li>
+                        <li>State</li>
+                        <li>Proxy</li>
+                    </ul> 
+                </div> 
+                      
+            </div>
+
+        `,
+        routeStyle: `
+            .design-pattern-container {
+                display: flex;
+                justify-content: space-around;
+            }
+            
+            .design-pattern-section {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            li { 
+                font-size: 1.25rem;
+                margin: auto;
+                width: 75%;
+                margin-bottom: 1rem;
+            }
+        `,
+        isActive: false
+    },
+    {
+        id: 8,
         routeName: 'designPatternForProject',
         routeHTML: `
             <h1>Design Patterns used</h1>
@@ -198,7 +243,49 @@ export const routes: Readonly<Array<Route>> = [
                         </code></pre>
                     </div>
                 </div>       
-                         
+            </div>
+
+        `,
+        routeStyle: `
+            .code-block { 
+                max-width: 100%;
+                border: 1rem solid;
+            }
+            
+            .patterns--sub-heading {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            
+            .patterns--section {
+                flex: 0 0 75%;
+                width: 75%;
+                padding: 1rem;
+            }
+        
+            .patterns--container {
+                display: flex;
+                width: 100vw;
+                overflow: hidden;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            li { 
+                font-size: 1.25rem;
+                margin: auto;
+                width: 50%;
+            }
+        `,
+        isActive: false
+    },
+    {
+        id: 9,
+        routeName: 'designPatternForProject',
+        routeHTML: `
+            <h1>Design Patterns used</h1>
+            <h2>Structural</h2>
+            <div class="patterns--container">
                 <div class="patterns--section">
                     <div>
                         <p class="patterns--sub-heading">Proxy</p>
@@ -224,14 +311,19 @@ export const routes: Readonly<Array<Route>> = [
 
         `,
         routeStyle: `
+            .code-block { 
+                max-width: 100%;
+                border: 1rem solid;
+            }
+            
             .patterns--sub-heading {
                 font-weight: bold;
                 font-size: 1rem;
             }
             
             .patterns--section {
-                flex: 0 0 50%;
-                width: 50%;
+                flex: 0 0 75%;
+                width: 75%;
                 padding: 1rem;
             }
         
@@ -239,6 +331,8 @@ export const routes: Readonly<Array<Route>> = [
                 display: flex;
                 width: 100vw;
                 overflow: hidden;
+                justify-content: center;
+                align-items: center;
             }
             
             li { 
@@ -250,82 +344,46 @@ export const routes: Readonly<Array<Route>> = [
         isActive: false
     },
     {
-        id: 8,
+        id: 10,
         routeName: 'designPatternForProject',
         routeHTML: `
             <h1>Design Patterns used</h1>
             <h2>Behavioural</h2> 
             <div class="patterns--container">
-                    <div class="patterns--sub-section">
-                        <p class="patterns--sub-heading">State</p>
-                        <pre><code class="code-block language-typescript">
-                        export class Router {
-                            private readonly _routerState: Array<Route>;
-                        
-                            constructor(userRoutes: Array<Route>) {
-                                this._routerState = userRoutes;
-                            }
-                        
-                            get state(): Array<Route> {
-                                return this._routerState;
-                            }
-                        
-                        }
-                        </code></pre>
-                    </div> 
-                       
-                    <div class="patterns--sub-section">
-                        <p class="patterns--sub-heading">Mediator</p>
-                        <pre><code class="code-block language-typescript">
-                        export class Bus implements Mediator {
-                            subscriptions = {};
-                            private _index: number = 0;
-                        
-                            subscribe(eventType, callback): Subscription {
-                                const id = this.getIdGenerator();
-                        
-                                if(!this.subscriptions[eventType])
-                                    this.subscriptions[eventType] = {};
-                        
-                                this.subscriptions[eventType][id] = callback;
-                        
-                                return {
-                                    unsubscribe: () => {
-                                        delete this.subscriptions[eventType][id];
-                                        if(Object.keys(this.subscriptions[eventType]).length === 0) delete this.subscriptions[eventType];
-                                    }
-                                }
-                            }
-                        
-                            publish(eventType, arg): void {
-                                if(!this.subscriptions[eventType]) return;
-                        
-                                Object
-                                    .keys(this.subscriptions[eventType])
-                                    .forEach(key => this.subscriptions[eventType][key](arg))
-                            }
-                        }
-                        </code></pre>
-                    </div> 
+                <div class="patterns--sub-section">
+                    <p class="patterns--sub-heading">State</p>
+                    <pre><code class="code-block language-typescript">
+                    export class Router {
+                        private readonly _routerState: Array<Route>;
                     
-                </div>
+                        constructor(userRoutes: Array<Route>) {
+                            this._routerState = userRoutes;
+                        }
+                    
+                        get state(): Array<Route> {
+                            return this._routerState;
+                        }
+                    
+                    }
+                    </code></pre>
+                </div> 
+            </div>
 
         `,
         routeStyle: `
+            .code-block { 
+                max-width: 100%;
+                border: 1rem solid;
+            }
+            
             .patterns--sub-heading {
                 font-weight: bold;
                 font-size: 1rem;
             }
-        
-            .patterns--section {
-                flex: 0 0 50%;
-                width: 50%;
-                padding: 1rem;
-            }            
             
-            .patterns--sub-section {
-                display: block;
-                width: 50%;
+            .patterns--section {
+                flex: 0 0 75%;
+                width: 75%;
                 padding: 1rem;
             }
         
@@ -333,6 +391,8 @@ export const routes: Readonly<Array<Route>> = [
                 display: flex;
                 width: 100vw;
                 overflow: hidden;
+                justify-content: center;
+                align-items: center;
             }
             
             li { 
@@ -344,7 +404,170 @@ export const routes: Readonly<Array<Route>> = [
         isActive: false
     },
     {
-        id: 9,
+        id: 11,
+        routeName: 'designPatternForProject',
+        routeHTML: `
+            <h1>Design Patterns used</h1>
+            <h2>Behavioural</h2> 
+            <div class="patterns--container">
+                <div class="patterns--sub-section">
+                    <p class="patterns--sub-heading">Mediator</p>
+                    <pre><code class="code-block language-typescript">
+                    export class Bus implements Mediator {
+                        subscriptions = {};
+                        private _index: number = 0;
+                    
+                        subscribe(eventType, callback): Subscription {
+                            const id = this.getIdGenerator();
+                    
+                            if(!this.subscriptions[eventType])
+                                this.subscriptions[eventType] = {};
+                    
+                            this.subscriptions[eventType][id] = callback;
+                    
+                            return {
+                                unsubscribe: () => {
+                                    delete this.subscriptions[eventType][id];
+                                    if(Object.keys(this.subscriptions[eventType]).length === 0) delete this.subscriptions[eventType];
+                                }
+                            }
+                        }
+                    
+                        publish(eventType, arg): void {
+                            if(!this.subscriptions[eventType]) return;
+                    
+                            Object
+                                .keys(this.subscriptions[eventType])
+                                .forEach(key => this.subscriptions[eventType][key](arg))
+                        }
+                    }
+                    </code></pre>
+                </div> 
+            </div>
+
+        `,
+        routeStyle: `
+            .code-block { 
+                max-width: 100%;
+                border: 1rem solid;
+            }
+            
+            .patterns--sub-heading {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            
+            .patterns--section {
+                flex: 0 0 75%;
+                width: 75%;
+                padding: 1rem;
+            }
+        
+            .patterns--container {
+                display: flex;
+                width: 100vw;
+                overflow: hidden;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            li { 
+                font-size: 1.25rem;
+                margin: auto;
+                width: 50%;
+            }
+        `,
+        isActive: false
+    },
+    {
+        id: 12,
+        routeName: 'designPatternCouldUse',
+        routeHTML: `
+            <h1>Design Patterns I could of used</h1>
+            <h2>Behavioural</h2> 
+            <div class="patterns--container">
+                    <div class="patterns--sub-section">
+                        <p class="patterns--sub-heading">Command</p>
+                        <pre><code class="code-block language-typescript">
+                        interface PresentationCommand {
+                            navigate(): void;
+                        }
+                        
+                        class PreviousCommand impliments PresentationCommand {
+                            navigate(): void {
+                                //navigate code here
+                            }
+                        }
+                        </code></pre>
+                    </div> 
+                       
+                </div>
+
+        `,
+        routeStyle: `
+            .code-block { 
+                max-width: 100%;
+                border: 1rem solid;
+            }
+            
+            .patterns--sub-heading {
+                font-weight: bold;
+                font-size: 1rem;
+            }
+            
+            .patterns--section {
+                flex: 0 0 75%;
+                width: 75%;
+                padding: 1rem;
+            }
+        
+            .patterns--container {
+                display: flex;
+                width: 100vw;
+                overflow: hidden;
+                justify-content: center;
+                align-items: center;
+            }
+            
+            li { 
+                font-size: 1.25rem;
+                margin: auto;
+                width: 50%;
+            }
+        `,
+        isActive: false
+    },
+    {
+        id: 13,
+        routeName: 'whydecisions',
+        routeHTML: `
+            <h1>Why I choose these design patterns?</h1>
+        `,
+        routeStyle: ``,
+        isActive: false
+    },
+    {
+        id: 14,
+        routeName: 'projectProgress',
+        routeHTML: `
+            <h1>The progress of the project:</h1>
+            <li>Spike</li>
+            <li>Skeleton</li>
+            <li>Tests</li>
+            <li>Refactor</li>
+            <li>Polish</li>
+        `,
+        routeStyle: `
+            li { 
+                font-size: 1.25rem;
+                margin: auto;
+                width: 50%;
+            }
+        `,
+        isActive: false
+    },
+    {
+        id: 15,
         routeName: 'decisions',
         routeHTML: `
             <h1>The Project at its current stage:</h1>
@@ -361,7 +584,7 @@ export const routes: Readonly<Array<Route>> = [
         isActive: false
     },
     {
-        id: 10,
+        id: 16,
         routeName: 'conclusion',
         routeHTML: `
             <h2>Link to framework: <a href="https://github.com/Elliot-Evans-95/presenation-framework">github.com/Elliot-Evans-95/presentation-framework</a></h2>
