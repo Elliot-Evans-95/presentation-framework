@@ -1,4 +1,4 @@
-import {Presentation} from "./presentation/presentation";
-import {routes} from "./user/routes";
+import { Presentation } from './presentation/presentation'
+import { routes } from './user/routes'
 
-new Presentation(routes);
+new Presentation(routes)

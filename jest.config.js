@@ -1,3 +1,7 @@
+// module.exports = {
+//     preset: 'ts-jest'
+// };
 module.exports = {
-    preset: 'ts-jest'
-};
+    moduleDirectories: ['node_modules', '<rootDir>/'],
+    testEnvironment: 'node',
+}
